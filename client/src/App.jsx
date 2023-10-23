@@ -1,7 +1,9 @@
+import Navbar from './components/navbar';
+
 function App() {
   return (
     <>
-      <button className='btn btn-secondary btn-wide'>Secondary</button>
+      <Navbar />
     </>
   );
 }
