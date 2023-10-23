@@ -1,4 +1,5 @@
 import LoginForm from './loginForm';
+import SignupForm from './signupForm';
 const Navbar = () => {
   return (
     <div className='navbar bg-navGray text-anti-white'>
@@ -74,14 +75,18 @@ const Navbar = () => {
           open modal
         </button>
         <dialog id='my_modal_3' className='modal'>
-          <div className='modal-box'>
+          <div className='modal-box w-11/12 max-w-5xl'>
             <form method='dialog'>
               {/* if there is a button in form, it will close the modal */}
               <button className='btn btn-sm btn-circle btn-ghost absolute right-2 top-2'>✕</button>
             </form>
-
-            {/* Login Component  */}
-            <LoginForm />
+            <div className='flex flex-row justify-center'>
+              {/* Login Component  */}
+              <LoginForm />
+              {/* Signup Component */}
+              <div className='divider divider-horizontal py-10'>OR</div>
+              <SignupForm />
+            </div>
           </div>
         </dialog>
       </div>
