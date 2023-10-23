@@ -1,0 +1,19 @@
+{
+  "name": "accessaid",
+  "version": "1.0.0",
+  "description": "Disability CMS for care-givers and clients to make day-to-day routines easier and manageable.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MwangiR/AccessAid.git"
+  },
+  "author": "MwangiR",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MwangiR/AccessAid/issues"
+  },
+  "homepage": "https://github.com/MwangiR/AccessAid#readme"
+}
