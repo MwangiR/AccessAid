@@ -27,8 +27,10 @@ const LoginForm = () => {
       const { data } = await loginUser({
         variables: { loginInput: { ...userFormData } },
       });
-      console.log('Login', userFormData);
-      const { token, user } = data;
+
+      const { token, user } = data.loginUser;
+      console.log('Login', data);
+      console.log(token);
       auth.login(token);
     } catch (err) {
       console.error('GraphQL Error:', err.message);
