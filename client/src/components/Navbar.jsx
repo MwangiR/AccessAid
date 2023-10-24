@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import LoginForm from './loginForm';
 import SignupForm from './signupForm';
 const Navbar = () => {
@@ -44,7 +45,11 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-        <a className='btn btn-ghost normal-case text-xl'>AccessAid</a>
+        {/* <a > */}
+        <Link className='btn btn-ghost normal-case text-xl' to='/'>
+          AccessAid
+        </Link>
+        {/* </a> */}
       </div>
       <div className='navbar-center hidden lg:flex'>
         <ul className='menu menu-horizontal px-1'>
@@ -72,7 +77,7 @@ const Navbar = () => {
       <div className='navbar-end'>
         {/* You can open the modal using document.getElementById('ID').showModal() method */}
         <button className='btn' onClick={() => document.getElementById('my_modal_3').showModal()}>
-          open modal
+          LOGIN / SIGNUP
         </button>
         <dialog id='my_modal_3' className='modal'>
           <div className='modal-box w-11/12 max-w-5xl'>
