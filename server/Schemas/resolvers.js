@@ -1,4 +1,4 @@
-const { User } = require('../models');
+const { User, Client } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -9,6 +9,10 @@ const resolvers = {
         return userData;
       }
       throw new Error('Not logged in');
+    },
+    clients: async (parent, args) => {
+      const clientData = await Client.find({});
+      return clientData;
     },
   },
   Mutation: {
@@ -44,6 +48,18 @@ const resolvers = {
 
       const token = signToken(user);
       return { token, user };
+    },
+    registerClient: async (parent, args) => {
+      const { name, email } = args.registerClient;
+      // see if an old user exists with email attempting to register
+      const oldClient = await Client.findOne({ email: email });
+      // Throw error if that user exists
+      if (oldClient) {
+        throw new Error('User already exists');
+      }
+      // Create new user
+      const client = await Client.create({ name, email });
+      return client;
     },
   },
 };

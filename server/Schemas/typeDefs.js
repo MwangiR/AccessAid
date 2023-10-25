@@ -6,9 +6,20 @@ const typeDefs = `
         password: String!
     }
 
+    type Client {
+        _id: ID!
+        name: String!
+        email: String!
+    }
+
     type Auth{
         token: ID
         user: User
+    }
+
+    input RegisterClient {
+        name: String!
+        email: String!
     }
 
     input RegisiterInput {
@@ -25,10 +36,12 @@ const typeDefs = `
     type Mutation {
         registerUser(registerInput: RegisiterInput): Auth
         loginUser(loginInput: LoginInput): Auth
+        registerClient(registerClient: RegisterClient): Client
     }
 
     type Query {
-        users: User
+        users: [User]
+        clients: [Client]
     }
 
 `;
