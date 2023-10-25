@@ -1,5 +1,6 @@
 import auth from '../utils/auth';
 import UserProfile from '../components/UserProfileCard';
+import ViewClients from '../components/viewClients';
 
 export default function Profile() {
   if (auth.loggedIn) {
@@ -9,6 +10,7 @@ export default function Profile() {
     return (
       <>
         <UserProfile username={data.username} email={data.email} />
+        <ViewClients />
       </>
     );
   }
