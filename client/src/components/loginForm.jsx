@@ -29,8 +29,8 @@ const LoginForm = () => {
       });
 
       const { token, user } = data.loginUser;
-      console.log('Login', data);
-      console.log(token);
+      // console.log('Login', data);
+      // console.log(token);
       auth.login(token);
     } catch (err) {
       console.error('GraphQL Error:', err.message);
