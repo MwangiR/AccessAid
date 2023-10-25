@@ -1,4 +1,10 @@
+import PropTypes from 'prop-types';
+
 export default function UserProfile(props) {
+  UserProfile.propTypes = {
+    username: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+  };
   return (
     <div className='flex justify-center'>
       <div className='w-full px-10 my-4 mx-20 py-6 bg-white rounded-lg shadow-md '>
