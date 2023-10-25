@@ -1,4 +1,5 @@
 import auth from '../utils/auth';
+import UserProfile from '../components/UserProfileCard';
 
 export default function Profile() {
   if (auth.loggedIn) {
@@ -7,8 +8,7 @@ export default function Profile() {
 
     return (
       <>
-        Profile
-        <p>{data.username}</p>
+        <UserProfile username={data.username} email={data.email} />
       </>
     );
   }

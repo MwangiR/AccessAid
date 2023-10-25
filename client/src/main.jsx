@@ -4,6 +4,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@ap
 import { setContext } from '@apollo/client/link/context';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import LandingPage from './pages/landingPage';
+import ErrorPage from './pages/Error';
 import Profile from './pages/Profile';
 import App from './App.jsx';
 import './index.css';
@@ -31,6 +32,7 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
