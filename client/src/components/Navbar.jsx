@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
+import auth from '../utils/auth';
 import LoginForm from './loginForm';
 import SignupForm from './signupForm';
+
 const Navbar = () => {
   return (
     <div className='navbar bg-navGray text-anti-white'>
@@ -75,11 +77,16 @@ const Navbar = () => {
         </ul>
       </div>
       <div className='navbar-end'>
-        {/* You can open the modal using document.getElementById('ID').showModal() method */}
-        <button className='btn' onClick={() => document.getElementById('my_modal_3').showModal()}>
-          LOGIN / SIGNUP
-        </button>
-        <dialog id='my_modal_3' className='modal'>
+        {auth.loggedIn() ? (
+          <button className='btn' onClick={() => auth.logout()}>
+            LOGOUT
+          </button>
+        ) : (
+          <button className='btn' onClick={() => document.getElementById('login').showModal()}>
+            LOGIN / SIGNUP
+          </button>
+        )}
+        <dialog id='login' className='modal'>
           <div className='modal-box w-11/12 max-w-5xl'>
             <form method='dialog'>
               {/* if there is a button in form, it will close the modal */}
