@@ -25,8 +25,8 @@ const SignupForm = () => {
       });
 
       const { token, user } = data.registerUser;
-      console.log('Register', data);
-      console.log(token);
+      // console.log('Register', data);
+      // console.log(token);
       auth.login(token);
     } catch (err) {
       console.error('GraphQL Error:', err.message);

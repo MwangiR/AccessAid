@@ -78,9 +78,14 @@ const Navbar = () => {
       </div>
       <div className='navbar-end'>
         {auth.loggedIn() ? (
-          <button className='btn' onClick={() => auth.logout()}>
-            LOGOUT
-          </button>
+          <div>
+            <Link className='btn btn-ghost normal-case text-m' to='/profile'>
+              {auth.getProfile().data.username} Profile
+            </Link>
+            <button className='btn' onClick={() => auth.logout()}>
+              LOGOUT
+            </button>
+          </div>
         ) : (
           <button className='btn' onClick={() => document.getElementById('login').showModal()}>
             LOGIN / SIGNUP
