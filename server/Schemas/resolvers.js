@@ -1,4 +1,4 @@
-const { User, Client } = require('../models');
+const { User, Client, TimelineEvent } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -10,9 +10,19 @@ const resolvers = {
       }
       throw new Error('Not logged in');
     },
-    clients: async (parent, args) => {
-      const clientData = await Client.find({});
-      return clientData;
+    clients: async () => {
+      try {
+        const clientData = await Client.find({}).populate('timelineEvents');
+        console.log(clientData);
+        return clientData;
+      } catch (err) {
+        console.error('Error fetching clients', err);
+        throw new Error(err);
+      }
+    },
+    timelineEvents: async (parent, args) => {
+      const timelineEventData = await TimelineEvent.find({});
+      return timelineEventData;
     },
   },
   Mutation: {
@@ -71,6 +81,24 @@ const resolvers = {
       });
 
       return newClient;
+    },
+    createTimelineEvent: async (_, { eventInput }) => {
+      const { clientId, notes, dueDate, createdAt, status } = eventInput;
+
+      if (!clientId) {
+        throw new Error('clientId is required'); // Ensure that clientId is provided
+      }
+
+      // Validate other input fields and perform the creation of the TimelineEvent
+      const newTimelineEvent = await TimelineEvent.create({
+        clientId, // Updated to match the schema
+        notes,
+        dueDate,
+        createdAt,
+        status,
+      });
+
+      return newTimelineEvent;
     },
   },
 };

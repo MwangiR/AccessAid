@@ -14,6 +14,16 @@ const typeDefs = `
         guardianName: String
         guardianContact: Int
         created_At: String
+        timelineEvents: [TimelineEvent]
+    }
+
+    type TimelineEvent {
+        _id: ID
+        clientId : ID!
+        createdAt: String!
+        notes: String
+        dueDate: String
+        status: Boolean
     }
 
     type Auth{
@@ -27,6 +37,14 @@ const typeDefs = `
         description: String
         guardianName: String
         guardianContact: Int
+    }
+
+    input CreateTimelineEvent {
+        clientId: ID!
+        notes: String!
+        dueDate: String
+        createdAt: String!
+        status: Boolean
     }
 
     input RegisiterInput {
@@ -44,11 +62,13 @@ const typeDefs = `
         registerUser(registerInput: RegisiterInput): Auth
         loginUser(loginInput: LoginInput): Auth
         registerClient(registerClient: RegisterClient): Client
+        createTimelineEvent(eventInput: CreateTimelineEvent): TimelineEvent
     }
 
     type Query {
         users: [User]
         clients: [Client]
+        timelineEvents(clientID: ID!): [TimelineEvent]
     }
 
 `;

@@ -27,6 +27,12 @@ const clientSchema = new Schema(
       type: String,
       required: false,
     },
+    timelineEvents: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'TimelineEvent',
+      },
+    ],
   },
   {
     toJSON: {
