@@ -1,6 +1,7 @@
 require('dotenv').config();
 const { GraphQLError } = require('graphql');
 const jwt = require('jsonwebtoken');
+const { DateTime } = require('luxon');
 
 //set token secret and expiration date
 const secret = process.env.JWT_SECRET;
@@ -30,6 +31,15 @@ module.exports = {
     try {
       const { data } = jwt.verify(token, secret, { maxAge: expiration });
       req.user = data;
+
+      // Convert the createdAt timestamp to a human-readable date
+      if (data.createdAt) {
+        const createdAtTimestamp = data.createdAt;
+        const createdAtDate = DateTime.fromMillis(createdAtTimestamp).toLocaleString(
+          DateTime.DATETIME_FULL,
+        );
+        data.createdAt = createdAtDate;
+      }
     } catch {
       console.log('Invalid token');
     }

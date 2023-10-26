@@ -1,7 +1,7 @@
 import auth from '../utils/auth';
 import UserProfile from '../components/UserProfileCard';
 import ViewClients from '../components/viewClients';
-import ActivityFeed from '../components/ActivityFeed';
+import EventsFeed from '../components/eventsFeed';
 
 export default function Profile() {
   if (auth.loggedIn) {
@@ -15,9 +15,8 @@ export default function Profile() {
             sidebar
           </nav>
           <main className='flex-1 min-w-0 overflow-auto'>
-            {' '}
             <UserProfile username={data.username} email={data.email} />
-            <ActivityFeed />
+            <EventsFeed />
             <ViewClients />
           </main>
         </div>

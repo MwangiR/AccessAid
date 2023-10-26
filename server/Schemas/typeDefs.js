@@ -14,10 +14,10 @@ const typeDefs = `
     guardianName: String
     guardianContact: Int
     created_At: String
-    timelineEvents: [TimelineEvent]
+    Events: [Event]
   }
 
-  type TimelineEvent {
+  type Event {
     _id: ID!
     clientId: ID!
     clientName: String!
@@ -40,7 +40,7 @@ const typeDefs = `
     guardianContact: Int
   }
 
-  input CreateTimelineEvent {
+  input CreateEvent {
     clientId: ID!
     notes: String!
     dueDate: String
@@ -62,14 +62,13 @@ const typeDefs = `
     registerUser(registerInput: RegisiterInput): Auth
     loginUser(loginInput: LoginInput): Auth
     registerClient(clientInput: RegisterClient): Client
-    createTimelineEvent(eventInput: CreateTimelineEvent): TimelineEvent
+    createEvent(eventInput: CreateEvent): Event
   }
 
   type Query {
     users: [User]
     clients: [Client]
-    timelineEvents(clientId: ID!): [TimelineEvent]
-    getAllEvents: [TimelineEvent]
+    events: [Event]
   }
 `;
 module.exports = typeDefs;
