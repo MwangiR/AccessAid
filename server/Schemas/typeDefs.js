@@ -10,6 +10,10 @@ const typeDefs = `
         _id: ID!
         name: String!
         email: String!
+        description: String
+        guardianName: String
+        guardianContact: Int
+        created_At: String
     }
 
     type Auth{
@@ -20,6 +24,9 @@ const typeDefs = `
     input RegisterClient {
         name: String!
         email: String!
+        description: String
+        guardianName: String
+        guardianContact: Int
     }
 
     input RegisiterInput {
