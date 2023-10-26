@@ -1,6 +1,5 @@
 import { useQuery } from '@apollo/client';
 import { GET_CLIENTS } from '../utils/queries';
-
 import dayjs from 'dayjs';
 
 export default function ViewClients() {
@@ -35,7 +34,8 @@ export default function ViewClients() {
                     </div>
                     <div className='md:flex-grow my-0'>
                       <div className='w-full divide-y divide-slate-200 rounded'>
-                        <details className='group p-4' open>
+                        {/* accordion start */}
+                        <details className='group p-4'>
                           <summary className='relative flex cursor-pointer list-none gap-4 pr-8 font-medium text-slate-700 transition-colors duration-300 focus-visible:outline-none group-hover:text-slate-900  [&::-webkit-details-marker]:hidden'>
                             <svg
                               xmlns='http://www.w3.org/2000/svg'
@@ -78,8 +78,22 @@ export default function ViewClients() {
                               />
                             </svg>
                           </summary>
-
-                          <p className='leading-relaxed my-1'>{client.description}</p>
+                          <div className='flex flex-row items-baseline'>
+                            <article className='prose lg:prose-xl'>Client Email:</article>
+                            <p className='font-mono ml-5'>{client.email}</p>
+                          </div>
+                          <div className='flex flex-row items-baseline'>
+                            <article className='prose lg:prose-xl'>Guardian Name:</article>
+                            <p className='font-mono ml-5'>{client.guardianName}</p>
+                          </div>
+                          <div className='flex flex-row items-baseline'>
+                            <article className='prose lg:prose-xl'>Guardian Contact:</article>
+                            <p className='font-mono ml-5'>{client.guardianContact}</p>
+                          </div>
+                          <div className='flex flex-row items-baseline'>
+                            <article className='prose lg:prose-xl'>Description:</article>
+                            <p className='font-mono ml-5'>{client.description}</p>
+                          </div>
                         </details>
                       </div>
                     </div>
