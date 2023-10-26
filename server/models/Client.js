@@ -23,10 +23,10 @@ const clientSchema = new Schema({
     type: Date,
     default: Date.now,
   },
-  timelineEvents: [
+  Events: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'TimelineEvent',
+      ref: 'Event',
     },
   ],
 });

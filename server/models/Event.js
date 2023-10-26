@@ -27,5 +27,5 @@ const eventSchema = new Schema({
   },
 });
 
-const TimelineEvent = model('TimelineEvent', eventSchema);
-module.exports = TimelineEvent;
+const Event = model('Event', eventSchema);
+module.exports = Event;

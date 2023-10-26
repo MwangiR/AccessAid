@@ -24,9 +24,9 @@ export const GET_CLIENTS = gql`
   }
 `;
 
-export const GET_TIMELINE_EVENTS = gql`
-  query getAllEvents {
-    timelineEvents {
+export const GET_EVENTS = gql`
+  query EVENT {
+    events {
       _id
       clientId
       clientName

@@ -1,4 +1,4 @@
-const { User, Client, TimelineEvent } = require('../models');
+const { User, Client, Event } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -12,21 +12,21 @@ const resolvers = {
     },
     clients: async () => {
       try {
-        const clientData = await Client.find({}).populate('timelineEvents');
+        const clientData = await Client.find({}).populate('Events');
         return clientData;
       } catch (err) {
         console.error('Error fetching clients', err);
         throw new Error(err);
       }
     },
-    timelineEvents: async () => {
-      const timelineEventData = await TimelineEvent.find();
-      return timelineEventData;
-    },
-    getAllEvents: async (parent) => {
+    // timelineEvents: async () => {
+    //   const timelineEventData = await TimelineEvent.find();
+    //   return timelineEventData;
+    // },
+    events: async (parent) => {
       try {
-        const timelineEventData = await TimelineEvent.find();
-        return timelineEventData;
+        const eventData = await Event.find();
+        return eventData;
       } catch (err) {
         console.error('Error fetching events', err);
         throw new Error(err);
@@ -79,7 +79,7 @@ const resolvers = {
 
       return await newClient.save();
     },
-    createTimelineEvent: async (_, { eventInput }) => {
+    createEvent: async (_, { eventInput }) => {
       const { clientId, notes, dueDate, status } = eventInput;
 
       if (!clientId) {
@@ -95,7 +95,7 @@ const resolvers = {
       const clientName = clientDoc.name;
 
       // Validate other input fields and perform the creation of the TimelineEvent
-      const newTimelineEvent = await TimelineEvent.create({
+      const newEvent = await Event.create({
         clientId,
         clientName,
         notes,
@@ -105,11 +105,11 @@ const resolvers = {
 
       const updateClientDoc = await Client.findOneAndUpdate(
         { _id: clientId },
-        { $push: { timelineEvents: newTimelineEvent._id } },
+        { $push: { Events: newEvent._id } },
         { new: true },
       ).lean();
 
-      return newTimelineEvent;
+      return newEvent;
     },
   },
 };

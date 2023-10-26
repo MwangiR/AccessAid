@@ -1,5 +1,5 @@
 const User = require('./User');
 const Client = require('./Client');
-const TimelineEvent = require('./TimelineEvent');
+const Event = require('./Event');
 
-module.exports = { User, Client, TimelineEvent };
+module.exports = { User, Client, Event };
