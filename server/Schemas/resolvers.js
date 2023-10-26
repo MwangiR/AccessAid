@@ -20,8 +20,8 @@ const resolvers = {
         throw new Error(err);
       }
     },
-    timelineEvents: async (parent, args) => {
-      const timelineEventData = await TimelineEvent.find({});
+    timelineEvents: async ({ clientId }) => {
+      const timelineEventData = await TimelineEvent.find({ clientId });
       return timelineEventData;
     },
   },
@@ -59,31 +59,20 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    registerClient: async (_, { registerClient }) => {
-      const { name, email, description, guardianName, guardianContact } = registerClient;
-
-      // Get the current date and time in a suitable format (e.g., ISO 8601) as a string
-      const currentDateTime = new Date().toISOString();
+    registerClient: async (_, { clientInput }) => {
+      // const { name, email, description, guardianName, guardianContact } = registerClient;
       // Check if a client with the same email already exists
-      const existingClient = await Client.findOne({ email });
+      const existingClient = await Client.findOne({ ...clientInput });
 
       if (existingClient) {
         throw new Error('Client already exists');
       }
-      // Create a new client with the 'created_At' field set to the current date and time
-      const newClient = await Client.create({
-        name,
-        email,
-        description,
-        guardianName,
-        guardianContact,
-        created_At: currentDateTime, // Make sure to use 'created_At' if that's what your type definition specifies.
-      });
+      const newClient = new Client(clientInput);
 
-      return newClient;
+      return await newClient.save();
     },
     createTimelineEvent: async (_, { eventInput }) => {
-      const { clientId, notes, dueDate, createdAt, status } = eventInput;
+      const { clientId, notes, dueDate, status } = eventInput;
 
       if (!clientId) {
         throw new Error('clientId is required'); // Ensure that clientId is provided
@@ -94,9 +83,14 @@ const resolvers = {
         clientId, // Updated to match the schema
         notes,
         dueDate,
-        createdAt,
         status,
       });
+
+      const updateClientDoc = await Client.findOneAndUpdate(
+        { _id: clientId },
+        { $push: { timelineEvents: newTimelineEvent._id } },
+        { new: true },
+      );
 
       return newTimelineEvent;
     },
