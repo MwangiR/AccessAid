@@ -49,17 +49,28 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    registerClient: async (parent, args) => {
-      const { name, email } = args.registerClient;
-      // see if an old user exists with email attempting to register
-      const oldClient = await Client.findOne({ email: email });
-      // Throw error if that user exists
-      if (oldClient) {
-        throw new Error('User already exists');
+    registerClient: async (_, { registerClient }) => {
+      const { name, email, description, guardianName, guardianContact } = registerClient;
+
+      // Get the current date and time in a suitable format (e.g., ISO 8601) as a string
+      const currentDateTime = new Date().toISOString();
+      // Check if a client with the same email already exists
+      const existingClient = await Client.findOne({ email });
+
+      if (existingClient) {
+        throw new Error('Client already exists');
       }
-      // Create new user
-      const client = await Client.create({ name, email });
-      return client;
+      // Create a new client with the 'created_At' field set to the current date and time
+      const newClient = await Client.create({
+        name,
+        email,
+        description,
+        guardianName,
+        guardianContact,
+        created_At: currentDateTime, // Make sure to use 'created_At' if that's what your type definition specifies.
+      });
+
+      return newClient;
     },
   },
 };

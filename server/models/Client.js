@@ -11,6 +11,22 @@ const clientSchema = new Schema(
       required: true,
       unique: true,
     },
+    description: {
+      type: String,
+      required: false,
+    },
+    guardianName: {
+      type: String,
+      required: false,
+    },
+    guardianContact: {
+      type: Number,
+      required: false,
+    },
+    created_At: {
+      type: String,
+      required: false,
+    },
   },
   {
     toJSON: {
