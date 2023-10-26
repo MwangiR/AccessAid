@@ -13,16 +13,24 @@ const resolvers = {
     clients: async () => {
       try {
         const clientData = await Client.find({}).populate('timelineEvents');
-        console.log(clientData);
         return clientData;
       } catch (err) {
         console.error('Error fetching clients', err);
         throw new Error(err);
       }
     },
-    timelineEvents: async ({ clientId }) => {
-      const timelineEventData = await TimelineEvent.find({ clientId });
+    timelineEvents: async () => {
+      const timelineEventData = await TimelineEvent.find();
       return timelineEventData;
+    },
+    getAllEvents: async (parent) => {
+      try {
+        const timelineEventData = await TimelineEvent.find();
+        return timelineEventData;
+      } catch (err) {
+        console.error('Error fetching events', err);
+        throw new Error(err);
+      }
     },
   },
   Mutation: {
@@ -77,10 +85,19 @@ const resolvers = {
       if (!clientId) {
         throw new Error('clientId is required'); // Ensure that clientId is provided
       }
+      // find the client document using the client ID
+      const clientDoc = await Client.findById(clientId).lean();
+
+      if (!clientDoc) {
+        throw new Error('Client not found');
+      }
+      //extract the clientName
+      const clientName = clientDoc.name;
 
       // Validate other input fields and perform the creation of the TimelineEvent
       const newTimelineEvent = await TimelineEvent.create({
-        clientId, // Updated to match the schema
+        clientId,
+        clientName,
         notes,
         dueDate,
         status,
@@ -90,7 +107,7 @@ const resolvers = {
         { _id: clientId },
         { $push: { timelineEvents: newTimelineEvent._id } },
         { new: true },
-      );
+      ).lean();
 
       return newTimelineEvent;
     },

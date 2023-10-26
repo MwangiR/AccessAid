@@ -23,3 +23,17 @@ export const GET_CLIENTS = gql`
     }
   }
 `;
+
+export const GET_TIMELINE_EVENTS = gql`
+  query getAllEvents {
+    timelineEvents {
+      _id
+      clientId
+      clientName
+      createdAt
+      notes
+      dueDate
+      status
+    }
+  }
+`;

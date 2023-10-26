@@ -5,7 +5,7 @@ import dayjs from 'dayjs';
 export default function ViewClients() {
   const { loading, data } = useQuery(GET_CLIENTS);
   const clientsData = data?.clients || [];
-  console.log('data', clientsData);
+  console.log('Clients', clientsData);
 
   if (loading) {
     <span className='loading loading-dots loading-lg'></span>;
@@ -28,7 +28,7 @@ export default function ViewClients() {
                   <div className='py-2 flex flex-wrap md:flex-nowrap' key={client._id}>
                     <div className='md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col'>
                       <span className='mt-1 text-gray-500 text-sm'>
-                        LAST UPDATED: {dayjs(client.createdAt).format('DD-MMM-YYYY')}
+                        LAST UPDATED: {dayjs.unix(parseInt(client.createdAt)).format('DD-MMM-YYYY')}
                       </span>
                       <span className='font-semibold title-font text-gray-700'>{client.name}</span>
                     </div>

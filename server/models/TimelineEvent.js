@@ -6,6 +6,9 @@ const eventSchema = new Schema({
     ref: 'Client',
     required: true,
   },
+  clientName: {
+    type: String,
+  },
   createdAt: {
     type: Date,
     default: Date.now,

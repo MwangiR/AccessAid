@@ -20,6 +20,7 @@ const typeDefs = `
   type TimelineEvent {
     _id: ID!
     clientId: ID!
+    clientName: String!
     createdAt: String
     notes: String
     dueDate: String
@@ -68,6 +69,7 @@ const typeDefs = `
     users: [User]
     clients: [Client]
     timelineEvents(clientId: ID!): [TimelineEvent]
+    getAllEvents: [TimelineEvent]
   }
 `;
 module.exports = typeDefs;
