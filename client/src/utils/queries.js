@@ -30,6 +30,7 @@ export const GET_EVENTS = gql`
       _id
       clientId
       clientName
+      eventCategory
       createdAt
       notes
       dueDate
@@ -52,6 +53,7 @@ export const GET_SINGLE_CLIENT = gql`
         _id
         clientName
         createdAt
+        eventCategory
         notes
         dueDate
         status

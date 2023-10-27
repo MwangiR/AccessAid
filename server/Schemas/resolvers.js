@@ -90,7 +90,7 @@ const resolvers = {
       return await newClient.save();
     },
     createEvent: async (_, { eventInput }) => {
-      const { clientId, notes, dueDate, status } = eventInput;
+      const { clientId, eventCategory, notes, dueDate, status } = eventInput;
 
       if (!clientId) {
         throw new Error('clientId is required'); // Ensure that clientId is provided
@@ -108,6 +108,7 @@ const resolvers = {
       const newEvent = await Event.create({
         clientId,
         clientName,
+        eventCategory,
         notes,
         dueDate,
         status,

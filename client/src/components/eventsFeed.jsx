@@ -48,7 +48,7 @@ export default function EventsFeed() {
                           {event.clientName}
                           <span className='text-base font-normal text-slate-500'>
                             {' '}
-                            has a new Event
+                            has a new {event.eventCategory}
                           </span>
                         </span>
                         <span className='text-sm font-normal text-slate-400'>
