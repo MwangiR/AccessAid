@@ -23,7 +23,7 @@ export default function EventsFeed() {
           <ul
             aria-label='User feed'
             role='feed'
-            className='relative flex flex-col gap-12 py-12 pl-8 before:absolute before:top-0 before:left-8 before:h-full before:-translate-x-1/2 before:border before:border-dashed before:border-slate-200 after:absolute after:top-6 after:left-8 after:bottom-6 after:-translate-x-1/2 after:border after:border-slate-200 '
+            className='relative my-5 flex flex-col gap-12 py-12 pl-8 before:absolute before:top-0 before:left-8 before:h-full before:-translate-x-1/2 before:border before:border-dashed before:border-slate-200 after:absolute after:top-6 after:left-8 after:bottom-6 after:-translate-x-1/2 after:border after:border-slate-200 '
           >
             {eventsData &&
               eventsData.map((event) => {
@@ -36,7 +36,7 @@ export default function EventsFeed() {
                           className='absolute z-10 inline-flex items-center justify-center w-8 h-8 text-white rounded-full -left-4 ring-2 ring-white'
                         >
                           <img
-                            src='https://i.pravatar.cc/48?img=1'
+                            src='https://i.pravatar.cc/48'
                             alt='user name'
                             title='user name'
                             width='48'
@@ -55,11 +55,11 @@ export default function EventsFeed() {
                           <span className='text-sm font-normal text-slate-400'>
                             {event.createdAt}
                           </span>
+                          {event.status === false ? (
+                            <div className='badge badge-primary cursor-pointer ml-6'>Pending</div>
+                          ) : null}
                         </h4>
                         <p className=' text-slate-500'>{event.notes}</p>
-                        {event.status === false ? (
-                          <div className='badge badge-primary'>Not Complete</div>
-                        ) : null}
                       </div>
                     </li>
                   </>
