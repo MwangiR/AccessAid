@@ -2,13 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { RouterProvider, createBrowserRouter, Navigate } from 'react-router-dom';
 import LandingPage from './pages/landingPage';
 import ErrorPage from './pages/Error';
 import Profile from './pages/Profile';
 import ManageClients from './pages/manageClients';
 import App from './App.jsx';
 import './index.css';
+import auth from './utils/auth';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -29,6 +30,12 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+const isAuthenticated = auth.loggedIn();
+
+const getRouteElement = (Component) => {
+  return isAuthenticated ? <Component /> : <Navigate to='/' />;
+};
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -41,11 +48,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/profile',
-        element: <Profile />,
+        element: getRouteElement(Profile),
       },
       {
         path: '/manageClients',
-        element: <ManageClients />,
+        element: getRouteElement(ManageClients),
       },
     ],
   },
