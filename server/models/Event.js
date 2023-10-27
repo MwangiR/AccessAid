@@ -13,6 +13,9 @@ const eventSchema = new Schema({
     type: Date,
     default: Date.now,
   },
+  eventCategory: {
+    type: String,
+  },
   notes: {
     type: String,
     required: true,

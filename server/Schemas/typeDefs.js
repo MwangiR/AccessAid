@@ -22,6 +22,7 @@ const typeDefs = `
     clientId: ID!
     clientName: String!
     createdAt: String
+    eventCategory:String
     notes: String
     dueDate: String
     status: Boolean
@@ -42,6 +43,7 @@ const typeDefs = `
 
   input CreateEvent {
     clientId: ID!
+    eventCategory:String
     notes: String!
     dueDate: String
     status: Boolean
