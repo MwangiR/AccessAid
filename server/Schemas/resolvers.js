@@ -32,6 +32,16 @@ const resolvers = {
         throw new Error(err);
       }
     },
+
+    client: async (parent, args) => {
+      try {
+        const clientData = await Client.findOne({ _id: args._id }).populate('Events');
+        return clientData;
+      } catch (err) {
+        console.error('Error fetching client', err);
+        throw new Error(err);
+      }
+    },
   },
   Mutation: {
     registerUser: async (parent, args) => {

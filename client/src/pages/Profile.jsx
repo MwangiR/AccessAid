@@ -1,5 +1,6 @@
 // import { createContext } from 'react';
 import auth from '../utils/auth';
+import { Link } from 'react-router-dom';
 import UserContext from '../utils/userContext';
 import UserProfile from '../components/UserProfileCard';
 import ViewClients from '../components/viewClients';
@@ -31,8 +32,12 @@ export default function Profile() {
                 <ViewClients />
               </main>
 
-              <nav className='order-first sm:w-32 bg-purple-200 text-anti-white shadow-md bg-navGray'>
-                Sidebar
+              <nav className='order-first bg-purple-200 text-anti-white shadow-md bg-navGray flex flex-col'>
+                <div className='m-4'>
+                  <Link className='btn btn-outline btn-secondary' to='/manageClients'>
+                    Manage Clients
+                  </Link>
+                </div>
               </nav>
 
               <aside className='sm:w-32 bg-yellow-100'>Right Sidebar</aside>

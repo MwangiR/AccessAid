@@ -6,6 +6,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import LandingPage from './pages/landingPage';
 import ErrorPage from './pages/Error';
 import Profile from './pages/Profile';
+import ManageClients from './pages/manageClients';
 import App from './App.jsx';
 import './index.css';
 
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
       {
         path: '/profile',
         element: <Profile />,
+      },
+      {
+        path: '/manageClients',
+        element: <ManageClients />,
       },
     ],
   },
