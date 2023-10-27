@@ -28,41 +28,39 @@ export default function EventsFeed() {
             {eventsData &&
               eventsData.map((event) => {
                 return (
-                  <>
-                    <li role='article' className='relative pl-8 ' key={event.clientId}>
-                      <div className='flex flex-col flex-1 gap-4'>
-                        <a
-                          href='#'
-                          className='absolute z-10 inline-flex items-center justify-center w-8 h-8 text-white rounded-full -left-4 ring-2 ring-white'
-                        >
-                          <img
-                            src='https://i.pravatar.cc/48'
-                            alt='user name'
-                            title='user name'
-                            width='48'
-                            height='48'
-                            className='max-w-full rounded-full'
-                          />
-                        </a>
-                        <h4 className='flex flex-col items-start text-lg font-medium leading-8 text-slate-700 md:flex-row lg:items-center'>
-                          <span className='flex-1'>
-                            {event.clientName}
-                            <span className='text-base font-normal text-slate-500'>
-                              {' '}
-                              has a new Event
-                            </span>
+                  <li role='article' className='relative pl-8 ' key={event._id}>
+                    <div className='flex flex-col flex-1 gap-4'>
+                      <a
+                        href='#'
+                        className='absolute z-10 inline-flex items-center justify-center w-8 h-8 text-white rounded-full -left-4 ring-2 ring-white'
+                      >
+                        <img
+                          src='https://i.pravatar.cc/48'
+                          alt='user name'
+                          title='user name'
+                          width='48'
+                          height='48'
+                          className='max-w-full rounded-full'
+                        />
+                      </a>
+                      <h4 className='flex flex-col items-start text-lg font-medium leading-8 text-slate-700 md:flex-row lg:items-center'>
+                        <span className='flex-1'>
+                          {event.clientName}
+                          <span className='text-base font-normal text-slate-500'>
+                            {' '}
+                            has a new Event
                           </span>
-                          <span className='text-sm font-normal text-slate-400'>
-                            {event.createdAt}
-                          </span>
-                          {event.status === false ? (
-                            <div className='badge badge-primary cursor-pointer ml-6'>Pending</div>
-                          ) : null}
-                        </h4>
-                        <p className=' text-slate-500'>{event.notes}</p>
-                      </div>
-                    </li>
-                  </>
+                        </span>
+                        <span className='text-sm font-normal text-slate-400'>
+                          {event.createdAt}
+                        </span>
+                        {event.status === false ? (
+                          <div className='badge badge-primary cursor-pointer ml-6'>Pending</div>
+                        ) : null}
+                      </h4>
+                      <p className=' text-slate-500'>{event.notes}</p>
+                    </div>
+                  </li>
                 );
               })}
           </ul>
