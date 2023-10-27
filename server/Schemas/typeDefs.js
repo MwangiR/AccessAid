@@ -68,6 +68,7 @@ const typeDefs = `
   type Query {
     users: [User]
     clients: [Client]
+    client(_id: ID!): Client
     events: [Event]
   }
 `;
