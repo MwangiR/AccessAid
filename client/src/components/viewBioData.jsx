@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useQuery } from '@apollo/client';
 import { GET_SINGLE_CLIENT } from '../utils/queries';
 

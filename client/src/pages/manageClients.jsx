@@ -2,6 +2,7 @@ import { useQuery } from '@apollo/client';
 import { useState, useEffect, useRef, createContext } from 'react';
 import { GET_CLIENTS } from '../utils/queries';
 import BioData from '../components/viewBioData';
+import SingleClientEvent from '../components/singleClientFeed';
 
 export const ClientContext = createContext();
 
@@ -80,7 +81,7 @@ export default function ManageClients() {
                 className='select select-success w-full max-w-xs'
                 onChange={handleClientSelection}
               >
-                <option disabled selected>
+                <option disabled value=''>
                   Select Client
                 </option>
                 {manageClients &&
@@ -136,7 +137,7 @@ export default function ManageClients() {
                       aria-selected={`${tabSelected.currentTab === 2 ? 'true' : 'false'}`}
                       onClick={() => setTabSelected({ ...tabSelected, currentTab: 2 })}
                     >
-                      <span>Tab 2</span>
+                      <span>Client Events</span>
                     </button>
                   </li>
                   <li className='' role='presentation'>
@@ -185,11 +186,12 @@ export default function ManageClients() {
                     aria-labelledby='tab-label-2a'
                     tabIndex='-1'
                   >
-                    <p>
+                    {/* <p>
                       One must be entirely sensitive to the structure of the material that one is
                       handling. One must yield to it in tiny details of execution, perhaps the
                       handling of the surface or grain, and one must master it as a whole.
-                    </p>
+                    </p> */}
+                    <SingleClientEvent clientId={selectClientID} />
                   </div>
                   <div
                     className={`px-6 py-4 ${tabSelected.currentTab === 3 ? '' : 'hidden'}`}
