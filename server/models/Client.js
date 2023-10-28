@@ -29,6 +29,12 @@ const clientSchema = new Schema({
       ref: 'Event',
     },
   ],
+  Medications: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Medication',
+    },
+  ],
 });
 
 const Client = model('Client', clientSchema);

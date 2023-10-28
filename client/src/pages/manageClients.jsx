@@ -81,7 +81,7 @@ export default function ManageClients() {
                 className='select select-success w-full max-w-xs'
                 onChange={handleClientSelection}
               >
-                <option disabled value=''>
+                <option disabled selected>
                   Select Client
                 </option>
                 {manageClients &&

@@ -58,6 +58,17 @@ export const GET_SINGLE_CLIENT = gql`
         dueDate
         status
       }
+      Medications {
+        _id
+        timeOfDay
+        medicationName
+        description
+        quantity
+        frequency
+        duration
+        notes
+        status
+      }
     }
   }
 `;
