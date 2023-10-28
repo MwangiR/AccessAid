@@ -24,7 +24,7 @@ const EventItem = ({ event }) => {
         <h4 className='flex flex-col items-start text-lg font-medium leading-8 text-slate-700 md:flex-row lg:items-center'>
           <span className='flex-1'>
             {event.clientName}
-            <span className='text-base font-normal text-slate-500'>
+            <span className='ml-1 text-base font-normal text-slate-500'>
               has a new {event.eventCategory}
             </span>
           </span>

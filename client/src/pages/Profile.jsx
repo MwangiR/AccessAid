@@ -5,6 +5,8 @@ import UserContext from '../utils/userContext';
 import UserProfile from '../components/UserProfileCard';
 import ViewClients from '../components/viewClients';
 import EventsFeed from '../components/eventsFeed';
+import modalComponent from '../components/modalComponent';
+import addNewClient from '../components/addNewClient';
 
 export default function Profile() {
   if (auth.loggedIn) {
@@ -37,6 +39,7 @@ export default function Profile() {
                   <Link className='btn btn-outline btn-secondary' to='/manageClients'>
                     Manage Clients
                   </Link>
+                  <div className='mt-4'>{modalComponent(addNewClient, 'Add New Client')}</div>
                 </div>
               </nav>
 
