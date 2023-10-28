@@ -1,4 +1,4 @@
-const { User, Client, Event } = require('../models');
+const { User, Client, Event, Medication } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -12,7 +12,7 @@ const resolvers = {
     },
     clients: async () => {
       try {
-        const clientData = await Client.find({}).populate('Events');
+        const clientData = await Client.find({}).populate('Events').populate('Medications');
         return clientData;
       } catch (err) {
         console.error('Error fetching clients', err);
@@ -35,10 +35,22 @@ const resolvers = {
 
     client: async (parent, args) => {
       try {
-        const clientData = await Client.findOne({ _id: args._id }).populate('Events');
+        const clientData = await Client.findOne({ _id: args._id })
+          .populate('Events')
+          .populate('Medications');
         return clientData;
       } catch (err) {
         console.error('Error fetching client', err);
+        throw new Error(err);
+      }
+    },
+
+    medications: async () => {
+      try {
+        const medicationData = await Medication.find();
+        return medicationData;
+      } catch (err) {
+        console.error('Error fetching medications', err);
         throw new Error(err);
       }
     },
@@ -121,6 +133,62 @@ const resolvers = {
       ).lean();
 
       return newEvent;
+    },
+    createMedication: async (_, { medicationInput }) => {
+      try {
+        const {
+          clientId,
+          timeOfDay,
+          medicationName,
+          description,
+          quantity,
+          frequency,
+          duration,
+          notes,
+          status,
+        } = medicationInput;
+
+        // Ensure that clientId is provided
+        if (!clientId) {
+          throw new Error('clientId is required');
+        }
+
+        // find the client document using the client ID
+        const clientDoc = await Client.findById(clientId).lean();
+
+        if (!clientDoc) {
+          throw new Error('Client not found');
+        }
+        //extract the clientName
+        const clientName = clientDoc.name;
+
+        const newMedication = await Medication.create({
+          clientId,
+          clientName,
+          timeOfDay,
+          medicationName,
+          description,
+          quantity,
+          frequency,
+          duration,
+          notes,
+          status,
+        });
+
+        await Client.findByIdAndUpdate(
+          { _id: clientId },
+          {
+            $push: {
+              Medications: newMedication._id,
+            },
+          },
+          { new: true },
+        );
+
+        return newMedication;
+      } catch (error) {
+        throw new Error('Failed to create medication: ' + error.message);
+      }
     },
   },
 };

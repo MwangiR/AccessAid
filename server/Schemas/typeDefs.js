@@ -15,6 +15,21 @@ const typeDefs = `
     guardianContact: Int
     created_At: String
     Events: [Event]
+    Medications: [Medication]
+  }
+
+  type Medication {
+    _id: ID!
+    clientId: ID!
+    clientName: String!
+    timeOfDay: String!
+    medicationName: String!
+    description: String!
+    quantity: Int!
+    frequency: String!
+    duration: Int!
+    notes: String
+    status: String!
   }
 
   type Event {
@@ -41,6 +56,18 @@ const typeDefs = `
     guardianContact: Int
   }
 
+  input CreateMedication {
+    clientId: ID!
+    timeOfDay: String!
+    medicationName: String!
+    description: String!
+    quantity: Int!
+    frequency: String!
+    duration: Int!
+    notes: String
+    status: String!
+  }
+  
   input CreateEvent {
     clientId: ID!
     eventCategory:String
@@ -65,6 +92,7 @@ const typeDefs = `
     loginUser(loginInput: LoginInput): Auth
     registerClient(clientInput: RegisterClient): Client
     createEvent(eventInput: CreateEvent): Event
+    createMedication(medicationInput: CreateMedication): Medication
   }
 
   type Query {
@@ -72,6 +100,7 @@ const typeDefs = `
     clients: [Client]
     client(_id: ID!): Client
     events: [Event]
+    medications: [Medication]
   }
 `;
 module.exports = typeDefs;
