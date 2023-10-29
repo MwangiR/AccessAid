@@ -26,7 +26,6 @@ export default function AddNewEvent({ clientId }) {
           eventInput,
         },
       });
-      console.log('Register Event data', data);
       dispatch({ type: 'REGISTER_EVENT', payload: data.registerEvent });
       setAlertMessage('Event Registered Successfully');
       window.location.reload();
@@ -50,13 +49,32 @@ export default function AddNewEvent({ clientId }) {
   return (
     <>
       <button
-        className='btn btn-outline btn-info'
+        className='btn btn-outline btn-info tooltip'
+        data-tip='Select client'
         onClick={() => document.getElementById('registerEventModal').showModal()}
       >
         Add New Event
       </button>
       <dialog id='registerEventModal' className='modal'>
         <div className='modal-box w-11/12 max-w-5xl bg-[#D4E6B5] text-navGray'>
+          {alertMessage && (
+            <div className='alert alert-info rounded-none'>
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                fill='none'
+                viewBox='0 0 24 24'
+                className='stroke-current shrink-0 w-6 h-6'
+              >
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  strokeWidth='2'
+                  d='M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
+                ></path>
+              </svg>
+              <span>{alertMessage}</span>
+            </div>
+          )}
           <p>ClientId: {clientId}</p>
           <p className='py-4'>Add Event</p>
 
