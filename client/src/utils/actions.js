@@ -1,0 +1,1 @@
+export const REGISTER_CLIENT = 'REGISTER_CLIENT';
