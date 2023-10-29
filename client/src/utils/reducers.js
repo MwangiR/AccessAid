@@ -7,6 +7,13 @@ export const clientReducer = (state, action) => {
         clients: [...state.clients, newClient],
       };
     }
+    case 'REGISTER_EVENT': {
+      const newEvent = { ...action.payload };
+      return {
+        ...state,
+        events: [...state.events, newEvent],
+      };
+    }
     default: {
       return state;
     }

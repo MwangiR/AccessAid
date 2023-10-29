@@ -1,1 +1,2 @@
 export const REGISTER_CLIENT = 'REGISTER_CLIENT';
+export const REGISTER_EVENT = 'REGISTER_EVENT';

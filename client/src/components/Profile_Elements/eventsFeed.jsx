@@ -39,7 +39,7 @@ const EventItem = ({ event }) => {
 
 export default function EventsFeed() {
   const { loading, data } = useQuery(GET_EVENTS);
-  const eventsData = data?.events?.sort((a, b) => b.createdAt - a.createdAt) || [];
+  const eventsData = data?.events?.slice().sort((a, b) => b.createdAt - a.createdAt) || [];
 
   if (loading) {
     return <span className='loading loading-dots loading-lg'></span>;

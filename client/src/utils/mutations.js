@@ -37,3 +37,14 @@ export const REGISTER_CLIENT = gql`
     }
   }
 `;
+
+export const REGISTER_EVENT = gql`
+  mutation createEvent($eventInput: CreateEvent) {
+    createEvent(eventInput: $eventInput) {
+      clientId
+      dueDate
+      eventCategory
+      notes
+    }
+  }
+`;
