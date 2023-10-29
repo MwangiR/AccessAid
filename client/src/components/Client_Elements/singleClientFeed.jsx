@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useQuery } from '@apollo/client';
-import { GET_SINGLE_CLIENT } from '../utils/queries';
+import { GET_SINGLE_CLIENT } from '../../utils/queries';
 
 export default function SingleClientEvent({ clientId }) {
   const { loading, data } = useQuery(GET_SINGLE_CLIENT, {

@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useQuery } from '@apollo/client';
-import { GET_EVENTS } from '../utils/queries';
-import formatDate from '../utils/dateFormat';
+import { GET_EVENTS } from '../../utils/queries';
+import formatDate from '../../utils/dateFormat';
 
 const EventItem = ({ event }) => {
   const statusClass = event.status === false ? 'badge badge-primary cursor-pointer ml-6' : '';

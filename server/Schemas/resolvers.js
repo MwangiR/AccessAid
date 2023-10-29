@@ -19,10 +19,6 @@ const resolvers = {
         throw new Error(err);
       }
     },
-    // timelineEvents: async () => {
-    //   const timelineEventData = await TimelineEvent.find();
-    //   return timelineEventData;
-    // },
     events: async (parent) => {
       try {
         const eventData = await Event.find();

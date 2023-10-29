@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useQuery } from '@apollo/client';
-import { GET_CLIENTS } from '../utils/queries';
-import formatDate from '../utils/dateFormat';
+import { GET_CLIENTS } from '../../utils/queries';
+import formatDate from '../../utils/dateFormat';
 
 // eslint-disable-next-line react/prop-types
 const ClientDetails = ({ client }) => (

@@ -2,11 +2,11 @@
 import auth from '../utils/auth';
 import { Link } from 'react-router-dom';
 import UserContext from '../utils/userContext';
-import UserProfile from '../components/UserProfileCard';
-import ViewClients from '../components/viewClients';
-import EventsFeed from '../components/eventsFeed';
+import UserProfile from '../components/Profile_Elements/UserProfileCard';
+import ViewClients from '../components/Profile_Elements/viewClients';
+import EventsFeed from '../components/Profile_Elements/eventsFeed';
 import modalComponent from '../components/modalComponent';
-import AddNewClient from '../components/addNewClient';
+import AddNewClient from '../components/forms/addNewClient';
 
 export default function Profile() {
   if (auth.loggedIn) {

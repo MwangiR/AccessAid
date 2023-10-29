@@ -1,8 +1,8 @@
 import { useQuery } from '@apollo/client';
 import { useState, useEffect, useRef, createContext } from 'react';
 import { GET_CLIENTS } from '../utils/queries';
-import BioData from '../components/viewBioData';
-import SingleClientEvent from '../components/singleClientFeed';
+import BioData from '../components/Client_Elements/viewBioData';
+import SingleClientEvent from '../components/Client_Elements/singleClientFeed';
 
 export const ClientContext = createContext();
 
