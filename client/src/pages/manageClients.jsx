@@ -218,9 +218,9 @@ export default function ManageClients() {
             <div className='m-4'>sidebar</div>
           </nav>
 
-          <aside className='sm:w-32 bg-yellow-100'>
-            Right Sidebar
-            <div>
+          <aside className=' bg-yellow-100'>
+            {/* Right Sidebar */}
+            <div className='mt-4 mb-2 mr-2'>
               <AddNewEvent clientId={selectClientID} />
             </div>
           </aside>

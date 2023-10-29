@@ -91,6 +91,7 @@ const typeDefs = `
     loginUser(loginInput: LoginInput): Auth
     registerClient(clientInput: RegisterClient): Client
     createEvent(eventInput: CreateEvent): Event
+    deleteEvent(eventId: ID!):Event
     createMedication(medicationInput: CreateMedication): Medication
   }
 

@@ -129,6 +129,21 @@ const resolvers = {
 
       return newEvent;
     },
+
+    deleteEvent: async (_, { eventId }) => {
+      try {
+        //find event by id
+        if (!eventId) {
+          throw new Error('eventId is required');
+        }
+
+        const deletedEvent = await Event.findByIdAndDelete(eventId);
+        return deletedEvent;
+      } catch (error) {
+        throw new Error('Failed to delete event: ' + error.message);
+      }
+    },
+
     createMedication: async (_, { medicationInput }) => {
       try {
         const {
