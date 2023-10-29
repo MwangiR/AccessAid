@@ -3,6 +3,7 @@ import { useState, useEffect, useRef, createContext } from 'react';
 import { GET_CLIENTS } from '../utils/queries';
 import BioData from '../components/Client_Elements/viewBioData';
 import SingleClientEvent from '../components/Client_Elements/singleClientFeed';
+import AddNewEvent from '../components/forms/addNewEvent';
 
 export const ClientContext = createContext();
 
@@ -67,7 +68,7 @@ export default function ManageClients() {
   };
 
   if (loading) {
-    <span className='loading loading-dots loading-lg'></span>;
+    return <span className='loading loading-dots loading-lg'></span>;
   }
 
   return (
@@ -217,7 +218,12 @@ export default function ManageClients() {
             <div className='m-4'>sidebar</div>
           </nav>
 
-          <aside className='sm:w-32 bg-yellow-100'>Right Sidebar</aside>
+          <aside className='sm:w-32 bg-yellow-100'>
+            Right Sidebar
+            <div>
+              <AddNewEvent clientId={selectClientID} />
+            </div>
+          </aside>
         </div>
         {/* 
           <footer className='bg-gray-100'>Footer</footer> */}
