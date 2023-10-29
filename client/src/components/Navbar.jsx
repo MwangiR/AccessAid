@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import auth from '../utils/auth';
-import LoginForm from './loginForm';
-import SignupForm from './signupForm';
+import LoginForm from './forms/loginForm';
+import SignupForm from './forms/signupForm';
 
 const Navbar = () => {
   return (

@@ -1,14 +1,13 @@
 import { useMutation } from '@apollo/client';
-import { REGISTER_CLIENT } from '../utils/mutations';
+import { REGISTER_CLIENT } from '../../utils/mutations';
 import { useReducer, useState } from 'react';
-import { clientReducer } from '../utils/reducers';
+import { clientReducer } from '../../utils/reducers';
+
+const initialState = { clients: [] };
 
 export default function AddNewClient() {
   const [registerClient] = useMutation(REGISTER_CLIENT);
 
-  const initialState = {
-    clients: [],
-  };
   const [state, dispatch] = useReducer(clientReducer, initialState);
 
   const [alertMessage, setAlertMessage] = useState(null);
@@ -21,6 +20,7 @@ export default function AddNewClient() {
           clientInput,
         },
       });
+      console.log('Register Client data', data);
       dispatch({ type: 'REGISTER_CLIENT', payload: data.registerClient });
       setAlertMessage('Client Registered Successfully');
       window.location.reload();

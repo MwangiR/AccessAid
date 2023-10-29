@@ -1,7 +1,7 @@
 import { useMutation } from '@apollo/client';
-import { REGISTER_USER } from '../utils/mutations';
+import { REGISTER_USER } from '../../utils/mutations';
 import { useState } from 'react';
-import auth from '../utils/auth';
+import auth from '../../utils/auth';
 
 const SignupForm = () => {
   const [registerUser] = useMutation(REGISTER_USER);
