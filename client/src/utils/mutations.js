@@ -25,3 +25,15 @@ export const REGISTER_USER = gql`
     }
   }
 `;
+
+export const REGISTER_CLIENT = gql`
+  mutation registerClient($clientInput: RegisterClient) {
+    registerClient(clientInput: $clientInput) {
+      name
+      email
+      description
+      guardianName
+      guardianContact
+    }
+  }
+`;
