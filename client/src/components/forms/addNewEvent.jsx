@@ -1,49 +1,61 @@
 /* eslint-disable react/prop-types */
-import { useMutation } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { REGISTER_EVENT } from '../../utils/mutations';
-import { useReducer, useState } from 'react';
-import { clientReducer } from '../../utils/reducers';
+import { useEffect, useState } from 'react';
+import { GET_SINGLE_CLIENT } from '../../utils/queries';
 
-const initialState = { events: [] };
+// const initialState = { events: [] };
 
 export default function AddNewEvent({ clientId }) {
   const [registerEvent] = useMutation(REGISTER_EVENT);
 
-  const [state, dispatch] = useReducer(clientReducer, initialState);
+  // const [state, dispatch] = useReducer(clientReducer, initialState);
+  // const [addNewEvent, setNewEvent] = usestate([])
 
   const [alertMessage, setAlertMessage] = useState(null);
 
   const [selectedOption, setSelectedOption] = useState('');
+  const [dueDate, setDueDate] = useState('');
+  const [eventCategory, setEventCategory] = useState('');
+  const [notes, setNotes] = useState('');
 
-  const handleOptionChange = (e) => {
-    setSelectedOption(e.target.value);
-  };
+  // const handleOptionChange = (e) => {
+  //   setSelectedOption(e.target.value);
+  // };
 
-  const handleRegisterEvent = async (eventInput) => {
+  const { data } = useQuery(GET_SINGLE_CLIENT, {
+    variables: {
+      id: clientId,
+    },
+  });
+
+  const handleRegisterEvent = async () => {
     try {
       const { data } = await registerEvent({
         variables: {
-          eventInput,
+          eventInput: {
+            clientId,
+            dueDate,
+            eventCategory,
+            notes,
+          },
         },
       });
-      dispatch({ type: 'REGISTER_EVENT', payload: data.registerEvent });
+
       setAlertMessage('Event Registered Successfully');
-      window.location.reload();
+      resetForm();
+      // window.location.reload();
     } catch (err) {
-      console.error('Error', err.graphQLErrors[0].message);
+      console.error('Error', err.message);
       setAlertMessage('Error registering event');
     }
   };
 
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    const { dueDate, eventCategory, notes } = e.target;
-    handleRegisterEvent({
-      clientId,
-      dueDate: dueDate.value,
-      eventCategory: eventCategory.value,
-      notes: notes.value,
-    });
+  const resetForm = () => {
+    setSelectedOption('');
+    setDueDate('');
+    setEventCategory('');
+    setNotes('');
   };
 
   return (
@@ -78,7 +90,13 @@ export default function AddNewEvent({ clientId }) {
           <p>ClientId: {clientId}</p>
           <p className='py-4'>Add Event</p>
 
-          <form className='space-y-4' onSubmit={handleFormSubmit}>
+          <form
+            className='space-y-4'
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleRegisterEvent();
+            }}
+          >
             <div className='grid grid-cols-1 gap-4 sm:grid-cols-2'>
               <label className='sr-only' htmlFor='name'>
                 Due Date
@@ -88,12 +106,14 @@ export default function AddNewEvent({ clientId }) {
                 placeholder='Client Name'
                 type='date'
                 name='dueDate'
+                value={dueDate}
+                onChange={(e) => setDueDate(e.target.value)}
               />
               <div>
                 <select
                   className='select select-primary w-full max-w-xs'
                   value={selectedOption}
-                  onChange={handleOptionChange}
+                  onChange={(e) => setEventCategory(e.target.value)}
                   name='eventCategory'
                 >
                   <option disabled selected>
@@ -116,6 +136,8 @@ export default function AddNewEvent({ clientId }) {
                 placeholder='Notes'
                 rows='8'
                 name='notes'
+                value={notes}
+                onChange={(e) => setNotes(e.target.value)}
               ></textarea>
             </div>
 
