@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useMutation, useQuery } from '@apollo/client';
 import { REGISTER_EVENT } from '../../utils/mutations';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { GET_SINGLE_CLIENT } from '../../utils/queries';
 
 // const initialState = { events: [] };
@@ -44,7 +44,7 @@ export default function AddNewEvent({ clientId }) {
 
       setAlertMessage('Event Registered Successfully');
       resetForm();
-      // window.location.reload();
+      window.location.reload();
     } catch (err) {
       console.error('Error', err.message);
       setAlertMessage('Error registering event');

@@ -4,6 +4,7 @@ import { GET_SINGLE_CLIENT } from '../../utils/queries';
 import { DELETE_EVENT } from '../../utils/mutations';
 import ShowToast from '../ToastComponent';
 import { useEffect, useState } from 'react';
+import EditEvent from '../forms/editEvent';
 
 export default function SingleClientEvent({ clientId }) {
   const { loading, data } = useQuery(GET_SINGLE_CLIENT, {
@@ -108,9 +109,10 @@ export default function SingleClientEvent({ clientId }) {
                           >
                             Delete
                           </button>
-                          <button className='btn btn-wide btn-sm btn-neutral m-2'>
+                          {/* <button className='btn btn-wide btn-sm btn-neutral m-2'>
                             Edit Event
-                          </button>
+                          </button> */}
+                          <EditEvent Id={individualEvent._id} />
                         </div>
                       </div>
                     </div>

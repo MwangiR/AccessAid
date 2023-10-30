@@ -57,6 +57,18 @@ export const REGISTER_EVENT = gql`
   }
 `;
 
+export const UPDATE_EVENT = gql`
+  mutation updateEvent($updateEventInput: UpdateEvent) {
+    updateEvent(updateEventInput: $updateEventInput) {
+      _id
+      dueDate
+      eventCategory
+      notes
+      status
+    }
+  }
+`;
+
 export const DELETE_EVENT = gql`
   mutation deleteEvent($eventId: ID!) {
     deleteEvent(eventId: $eventId) {
