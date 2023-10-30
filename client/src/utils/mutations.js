@@ -38,6 +38,14 @@ export const REGISTER_CLIENT = gql`
   }
 `;
 
+export const DELETE_CLIENT = gql`
+  mutation deleteClient($clientId: ID!) {
+    deleteClient(clientId: $clientId) {
+      _id
+    }
+  }
+`;
+
 export const REGISTER_EVENT = gql`
   mutation createEvent($eventInput: CreateEvent) {
     createEvent(eventInput: $eventInput) {
