@@ -72,3 +72,18 @@ export const GET_SINGLE_CLIENT = gql`
     }
   }
 `;
+
+export const GET_SINGLE_EVENT = gql`
+  query EVENT($id: ID!) {
+    event(_id: $id) {
+      _id
+      clientId
+      clientName
+      eventCategory
+      createdAt
+      notes
+      dueDate
+      status
+    }
+  }
+`;

@@ -28,6 +28,15 @@ const resolvers = {
         throw new Error(err);
       }
     },
+    event: async (_, args) => {
+      try {
+        const eventData = await Event.findOne({ _id: args._id });
+        return eventData;
+      } catch (err) {
+        console.error('Error fetching event', err);
+        throw new Error(err);
+      }
+    },
 
     client: async (parent, args) => {
       try {
@@ -98,7 +107,7 @@ const resolvers = {
       return await newClient.save();
     },
     createEvent: async (_, { eventInput }) => {
-      const { clientId, eventCategory, notes, dueDate } = eventInput;
+      const { clientId, eventCategory, notes, dueDate, status } = eventInput;
 
       if (!clientId) {
         throw new Error('clientId is required'); // Ensure that clientId is provided
@@ -119,6 +128,7 @@ const resolvers = {
         eventCategory,
         notes,
         dueDate,
+        status,
       });
 
       const updateClientDoc = await Client.findOneAndUpdate(
@@ -163,6 +173,26 @@ const resolvers = {
         return deletedClient;
       } catch (error) {
         throw new Error('Failed to delete client: ' + error.message);
+      }
+    },
+
+    updateEvent: async (_, { updateEventInput }) => {
+      const { _id, eventCategory, notes, dueDate, status } = updateEventInput;
+      try {
+        if (!_id) {
+          throw new Error('eventId is required');
+        }
+        const updatedEvent = await Event.findByIdAndUpdate(
+          { _id },
+          { eventCategory, notes, dueDate, status },
+          { new: true },
+        );
+        if (!updatedEvent) {
+          throw new Error('Failed to update event');
+        }
+        return updatedEvent;
+      } catch (error) {
+        throw new Error('Failed to update event: ' + error.message);
       }
     },
 

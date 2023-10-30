@@ -40,7 +40,7 @@ const typeDefs = `
     eventCategory:String
     notes: String
     dueDate: String
-    status: Boolean
+    status: String
   }
 
   type Auth {
@@ -86,12 +86,21 @@ const typeDefs = `
     password: String!
   }
 
+  input UpdateEvent {
+    _id: ID!
+    status: String!
+    eventCategory:String
+    notes:String
+    dueDate:String
+  }
+
   type Mutation {
     registerUser(registerInput: RegisiterInput): Auth
     loginUser(loginInput: LoginInput): Auth
     registerClient(clientInput: RegisterClient): Client
     deleteClient(clientId: ID!): Client
     createEvent(eventInput: CreateEvent): Event
+    updateEvent(updateEventInput: UpdateEvent): Event
     deleteEvent(eventId: ID!):Event
     createMedication(medicationInput: CreateMedication): Medication
   }
@@ -101,6 +110,7 @@ const typeDefs = `
     clients: [Client]
     client(_id: ID!): Client
     events: [Event]
+    event(_id: ID!): Event
     medications: [Medication]
   }
 `;
