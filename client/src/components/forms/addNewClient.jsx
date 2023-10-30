@@ -2,6 +2,7 @@ import { useMutation } from '@apollo/client';
 import { REGISTER_CLIENT } from '../../utils/mutations';
 import { useReducer, useState } from 'react';
 import { clientReducer } from '../../utils/reducers';
+import ShowToast from '../ToastComponent';
 
 const initialState = { clients: [] };
 
@@ -23,6 +24,7 @@ export default function AddNewClient() {
       console.log('Register Client data', data);
       dispatch({ type: 'REGISTER_CLIENT', payload: data.registerClient });
       setAlertMessage('Client Registered Successfully');
+      <ShowToast message='Successfully Deleted' type='success' />;
       window.location.reload();
     } catch (err) {
       console.error('Error', err.graphQLErrors[0].message);

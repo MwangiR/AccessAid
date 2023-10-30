@@ -1,2 +1,3 @@
 export const REGISTER_CLIENT = 'REGISTER_CLIENT';
 export const REGISTER_EVENT = 'REGISTER_EVENT';
+export const DELETE_EVENT = 'DELETE_EVENT';

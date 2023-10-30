@@ -14,6 +14,15 @@ export const clientReducer = (state, action) => {
         events: [...state.events, newEvent],
       };
     }
+    case 'DELETE_EVENT': {
+      const eventId = action.payload;
+      const updatedEvents = state.events.filter((event) => event._id !== eventId);
+      return {
+        ...state,
+        events: updatedEvents,
+      };
+    }
+
     default: {
       return state;
     }
