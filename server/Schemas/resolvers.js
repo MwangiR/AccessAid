@@ -130,14 +130,38 @@ const resolvers = {
       return newEvent;
     },
 
-    deleteEvent: async (_, { eventId }) => {
+    deleteClient: async (_, { clientId }) => {
+      //find client by id
+      if (!clientId) {
+        throw new Error('clientId is required');
+      }
       try {
-        //find event by id
-        if (!eventId) {
-          throw new Error('eventId is required');
-        }
+        const deletedClient = await Client.findByIdAndDelete(clientId);
+        return deletedClient;
+      } catch (error) {
+        throw new Error('Failed to delete client: ' + error.message);
+      }
+    },
 
+    deleteEvent: async (_, { eventId }) => {
+      //find event by id
+      if (!eventId) {
+        throw new Error('eventId is required');
+      }
+      try {
         const deletedEvent = await Event.findByIdAndDelete(eventId);
+
+        await Client.updateMany(
+          {
+            Events: eventId,
+          },
+          {
+            $pull: {
+              Events: eventId,
+            },
+          },
+        );
+
         return deletedEvent;
       } catch (error) {
         throw new Error('Failed to delete event: ' + error.message);
