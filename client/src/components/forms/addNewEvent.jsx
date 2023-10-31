@@ -13,10 +13,9 @@ export default function AddNewEvent({ clientId }) {
   // const [addNewEvent, setNewEvent] = usestate([])
 
   const [alertMessage, setAlertMessage] = useState(null);
-
-  const [selectedOption, setSelectedOption] = useState('');
   const [dueDate, setDueDate] = useState('');
   const [eventCategory, setEventCategory] = useState('');
+  const [status, setStatus] = useState('');
   const [notes, setNotes] = useState('');
 
   // const handleOptionChange = (e) => {
@@ -37,6 +36,7 @@ export default function AddNewEvent({ clientId }) {
             clientId,
             dueDate,
             eventCategory,
+            status,
             notes,
           },
         },
@@ -52,9 +52,9 @@ export default function AddNewEvent({ clientId }) {
   };
 
   const resetForm = () => {
-    setSelectedOption('');
     setDueDate('');
     setEventCategory('');
+    setStatus('');
     setNotes('');
   };
 
@@ -112,18 +112,36 @@ export default function AddNewEvent({ clientId }) {
               <div>
                 <select
                   className='select select-primary w-full max-w-xs'
-                  value={selectedOption}
-                  onChange={(e) => setEventCategory(e.target.value)}
                   name='eventCategory'
+                  value={eventCategory}
+                  onChange={(e) => setEventCategory(e.target.value)}
                 >
                   <option disabled selected>
-                    Event Category
+                    Event Status
                   </option>
                   <option value='1:1 Support'>1:1 Support</option>
                   <option value='Appointment'>Appointment</option>
                   <option value='Other'>Other...</option>
                 </select>
               </div>
+            </div>
+
+            <div>
+              <select
+                className='select select-primary w-full max-w-xs'
+                name='status'
+                value={status}
+                onChange={(e) => setStatus(e.target.value)}
+              >
+                <option disabled selected>
+                  Event Status
+                </option>
+                <option value='Completed'>Complete</option>
+                <option value='Cancelled'>Cancelled</option>
+                <option value='Pending'>Pending</option>
+                <option value='Rescheduled'>Rescheduled</option>
+                <option value='Other'>Other...</option>
+              </select>
             </div>
 
             <div>

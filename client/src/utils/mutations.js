@@ -53,6 +53,7 @@ export const REGISTER_EVENT = gql`
       dueDate
       eventCategory
       notes
+      status
     }
   }
 `;
