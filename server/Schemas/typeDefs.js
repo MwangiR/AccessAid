@@ -73,6 +73,7 @@ const typeDefs = `
     eventCategory:String
     notes: String!
     dueDate: String
+    status:String!
   }
 
   input RegisiterInput {
