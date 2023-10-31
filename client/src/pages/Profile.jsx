@@ -15,16 +15,6 @@ export default function Profile() {
 
     return (
       <>
-        {/* <div className='min-h-screen flex border-r'>
-          <nav className='w-56 flex-none flex-col text-anti-white shadow-md bg-navGray '>
-            sidebar
-          </nav>
-          <main className='flex-1 min-w-0 overflow-auto'>
-            <UserProfile username={data.username} email={data.email} />
-            <EventsFeed />
-            <ViewClients />
-          </main>
-        </div> */}
         <UserContext.Provider value={data}>
           <div className='min-h-screen flex flex-col'>
             <div className='flex-1 flex flex-col sm:flex-row'>
@@ -35,9 +25,12 @@ export default function Profile() {
               </main>
 
               <nav className='order-first bg-purple-200 text-anti-white shadow-md bg-navGray flex flex-col'>
-                <div className='m-4'>
+                <div className='m-4 flex flex-col'>
                   <Link className='btn btn-outline btn-secondary' to='/manageClients'>
                     Manage Clients
+                  </Link>
+                  <Link className='btn btn-outline btn-secondary my-4' to='/manageMedications'>
+                    Manage Medications
                   </Link>
                   <div className='mt-4'>{modalComponent(AddNewClient, 'Add New Client')}</div>
                 </div>

@@ -7,6 +7,7 @@ import LandingPage from './pages/landingPage';
 import ErrorPage from './pages/Error';
 import Profile from './pages/Profile';
 import ManageClients from './pages/manageClients';
+import ManageMedications from './pages/manageMedications';
 import App from './App.jsx';
 import './index.css';
 import auth from './utils/auth';
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
       {
         path: '/manageClients',
         element: getRouteElement(ManageClients),
+      },
+      {
+        path: '/manageMedications',
+        element: getRouteElement(ManageMedications),
       },
     ],
   },
