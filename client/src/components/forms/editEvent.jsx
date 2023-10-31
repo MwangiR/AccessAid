@@ -29,15 +29,13 @@ export default function EditEvent(prop) {
     try {
       await updateEvent({
         variables: {
-          // updateEventInput: {
-          //     _id: singleEvent._id,
-          //     eventCategory: formData.eventCategory,
-          //     notes: formData.notes,
-          //     dueDate: formData.dueDate,
-          //     status: formData.status,
-          // }
-          id: singleEvent._id,
-          input: formData,
+          updateEventInput: {
+            _id: singleEvent._id,
+            eventCategory: formData.eventCategory,
+            notes: formData.notes,
+            dueDate: formData.dueDate,
+            status: formData.status,
+          },
         },
       });
       alert('successfully changed');
@@ -46,6 +44,10 @@ export default function EditEvent(prop) {
       alert(err.message);
     }
   };
+
+  if (loading) {
+    return <span className='loading loading-dots loading-lg'></span>;
+  }
 
   console.log('Edit single event', singleEvent);
 
