@@ -4,6 +4,7 @@ import { GET_CLIENTS } from '../utils/queries';
 import BioData from '../components/Client_Elements/viewBioData';
 import SingleClientEvent from '../components/Client_Elements/singleClientFeed';
 import AddNewEvent from '../components/forms/addNewEvent';
+import ClientMedication from '../components/Client_Elements/singleClientMedications';
 
 export const ClientContext = createContext();
 
@@ -157,7 +158,7 @@ export default function ManageClients() {
                       aria-selected={`${tabSelected.currentTab === 3 ? 'true' : 'false'}`}
                       onClick={() => setTabSelected({ ...tabSelected, currentTab: 3 })}
                     >
-                      <span>Tab 3</span>
+                      <span>Client Medication</span>
                     </button>
                   </li>
                 </ul>
@@ -202,12 +203,7 @@ export default function ManageClients() {
                     aria-labelledby='tab-label-3a'
                     tabIndex='-1'
                   >
-                    <p>
-                      Even though there is no certainty that the expected results of our work will
-                      manifest, we have to remain committed to our work and duties; because, even if
-                      the results are slated to arrive, they cannot do so without the performance of
-                      work.
-                    </p>
+                    <ClientMedication clientId={selectClientID} />
                   </div>
                 </div>
               </section>
