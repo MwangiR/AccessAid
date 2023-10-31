@@ -177,6 +177,9 @@ const resolvers = {
     },
 
     updateEvent: async (_, { updateEventInput }) => {
+      if (!updateEventInput) {
+        throw new Error('updateEventInput is required');
+      }
       const { _id, eventCategory, notes, dueDate, status } = updateEventInput;
       try {
         if (!_id) {
