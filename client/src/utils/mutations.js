@@ -77,3 +77,27 @@ export const DELETE_EVENT = gql`
     }
   }
 `;
+
+export const DELETE_MEDICATION = gql`
+  mutation deleteMedication($medicationId: ID!) {
+    deleteMedication(medicationId: $medicationId) {
+      _id
+    }
+  }
+`;
+
+export const CREATE_MEDICATION = gql`
+  mutation createMedication($medicationInput: CreateMedication) {
+    createMedication(medicationInput: $medicationInput) {
+      clientId
+      timeOfDay
+      medicationName
+      notes
+      description
+      quantity
+      frequency
+      duration
+      status
+    }
+  }
+`;

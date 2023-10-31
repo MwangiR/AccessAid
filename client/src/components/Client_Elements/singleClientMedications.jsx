@@ -1,6 +1,7 @@
-import { useQuery } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { GET_SINGLE_CLIENT } from '../../utils/queries';
 import { useState, useEffect } from 'react';
+import { DELETE_MEDICATION } from '../../utils/mutations';
 
 /* eslint-disable react/prop-types */
 export default function ClientMedication({ clientId }) {
@@ -8,9 +9,26 @@ export default function ClientMedication({ clientId }) {
     variables: { id: clientId },
   });
 
+  const [deleteMedication] = useMutation(DELETE_MEDICATION);
+
   const [individualClientMedication, setIndividualClientMedication] = useState(
     data?.client?.Medications || [],
   );
+
+  async function handleDeleteMedication(medicationId) {
+    console.log('Removing medication with id', medicationId);
+    try {
+      await deleteMedication({
+        variables: { medicationId },
+      });
+
+      setIndividualClientMedication((medications) =>
+        medications.filter((medication) => medication._id !== medicationId),
+      );
+    } catch (err) {
+      console.error('Error', err.message);
+    }
+  }
 
   useEffect(() => {
     if (!loading) {
@@ -152,7 +170,7 @@ export default function ClientMedication({ clientId }) {
                       <div className='m-4'>
                         <button
                           className='btn btn-wide btn-sm btn-error m-2'
-                          // onClick={() => handleDeleteEvent(individualEvent._id)}
+                          onClick={() => handleDeleteMedication(individualMedication._id)}
                         >
                           Delete Medication
                         </button>

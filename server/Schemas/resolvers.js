@@ -252,15 +252,19 @@ const resolvers = {
         //extract the clientName
         const clientName = clientDoc.name;
 
+        //convert to integers
+        const quantityInt = parseInt(quantity);
+        const durationInt = parseInt(duration);
+
         const newMedication = await Medication.create({
           clientId,
           clientName,
           timeOfDay,
           medicationName,
           description,
-          quantity,
           frequency,
-          duration,
+          quantity: quantityInt,
+          duration: durationInt,
           notes,
           status,
         });
@@ -278,6 +282,30 @@ const resolvers = {
         return newMedication;
       } catch (error) {
         throw new Error('Failed to create medication: ' + error.message);
+      }
+    },
+    deleteMedication: async (_, { medicationId }) => {
+      //find medication by id
+      if (!medicationId) {
+        throw new Error('eventId is required');
+      }
+      try {
+        const deletedMedication = await Medication.findByIdAndDelete(medicationId);
+
+        await Client.updateMany(
+          {
+            Medications: medicationId,
+          },
+          {
+            $pull: {
+              Medications: medicationId,
+            },
+          },
+        );
+
+        return deletedMedication;
+      } catch (error) {
+        throw new Error('Failed to delete medication: ' + error.message);
       }
     },
   },

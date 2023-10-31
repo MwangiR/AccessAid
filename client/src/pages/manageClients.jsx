@@ -5,6 +5,7 @@ import BioData from '../components/Client_Elements/viewBioData';
 import SingleClientEvent from '../components/Client_Elements/singleClientFeed';
 import AddNewEvent from '../components/forms/addNewEvent';
 import ClientMedication from '../components/Client_Elements/singleClientMedications';
+import AddNewMedication from '../components/forms/addNewMedication';
 
 export const ClientContext = createContext();
 
@@ -218,6 +219,9 @@ export default function ManageClients() {
             {/* Right Sidebar */}
             <div className='mt-4 mb-2 mr-2'>
               <AddNewEvent clientId={selectClientID} />
+            </div>
+            <div className='mt-4 mb-2 mr-2'>
+              <AddNewMedication clientId={selectClientID} />
             </div>
           </aside>
         </div>

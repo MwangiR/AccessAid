@@ -61,9 +61,9 @@ const typeDefs = `
     timeOfDay: String!
     medicationName: String!
     description: String!
-    quantity: Int!
+    quantity: String!
     frequency: String!
-    duration: Int!
+    duration: String!
     notes: String
     status: String!
   }
@@ -104,6 +104,7 @@ const typeDefs = `
     updateEvent(updateEventInput: UpdateEvent): Event
     deleteEvent(eventId: ID!):Event
     createMedication(medicationInput: CreateMedication): Medication
+    deleteMedication(medicationId: ID!): Medication
   }
 
   type Query {
