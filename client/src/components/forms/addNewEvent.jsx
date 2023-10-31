@@ -117,7 +117,7 @@ export default function AddNewEvent({ clientId }) {
                   onChange={(e) => setEventCategory(e.target.value)}
                 >
                   <option disabled selected>
-                    Event Status
+                    Event Category
                   </option>
                   <option value='1:1 Support'>1:1 Support</option>
                   <option value='Appointment'>Appointment</option>
