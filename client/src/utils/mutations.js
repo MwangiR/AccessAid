@@ -96,7 +96,7 @@ export const CREATE_MEDICATION = gql`
       description
       quantity
       frequency
-      duration
+      dosage
       status
     }
   }

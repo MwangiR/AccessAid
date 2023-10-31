@@ -27,7 +27,7 @@ const typeDefs = `
     description: String!
     quantity: Int!
     frequency: String!
-    duration: Int!
+    dosage: Int!
     notes: String
     status: String!
   }
@@ -63,7 +63,7 @@ const typeDefs = `
     description: String!
     quantity: String!
     frequency: String!
-    duration: String!
+    dosage: String!
     notes: String
     status: String!
   }
