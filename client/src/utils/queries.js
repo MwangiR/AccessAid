@@ -87,3 +87,20 @@ export const GET_SINGLE_EVENT = gql`
     }
   }
 `;
+
+export const GET_MEDICATIONS = gql`
+  query MEDICATION {
+    medications {
+      _id
+      timeOfDay
+      medicationName
+      clientName
+      notes
+      description
+      quantity
+      frequency
+      duration
+      status
+    }
+  }
+`;

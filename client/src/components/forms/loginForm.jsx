@@ -6,6 +6,7 @@ import auth from '../../utils/auth';
 const LoginForm = () => {
   const [loginUser] = useMutation(LOGIN_USER);
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
+  const [alertMessage, setAlertMessage] = useState(null);
   // const [validated] = useState(false);
 
   const handleInputChange = (event) => {
@@ -24,6 +25,7 @@ const LoginForm = () => {
       auth.login(token);
     } catch (err) {
       console.error('GraphQL Error:', err.message);
+      setAlertMessage(err.message);
     }
 
     setUserFormData({
@@ -35,6 +37,24 @@ const LoginForm = () => {
   return (
     <section className='text-navGray'>
       <div className='flex flex-col justify-center min- py-12 sm:px-6 lg:px-8'>
+        {alertMessage && (
+          <div className='alert alert-error rounded-none'>
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              fill='none'
+              viewBox='0 0 24 24'
+              className='stroke-current shrink-0 w-6 h-6'
+            >
+              <path
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                strokeWidth='2'
+                d='M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
+              ></path>
+            </svg>
+            <span>{alertMessage}</span>
+          </div>
+        )}
         <div className='sm:mx-auto sm:w-full sm:max-w-md'>
           <h2 className='mt-6 text-3xl font-extrabold text-center text-neutral-600'>LOGIN</h2>
         </div>
