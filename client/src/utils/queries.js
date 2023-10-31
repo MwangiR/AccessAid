@@ -65,7 +65,7 @@ export const GET_SINGLE_CLIENT = gql`
         description
         quantity
         frequency
-        duration
+        dosage
         notes
         status
       }
@@ -99,7 +99,7 @@ export const GET_MEDICATIONS = gql`
       description
       quantity
       frequency
-      duration
+      dosage
       status
     }
   }

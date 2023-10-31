@@ -28,7 +28,7 @@ const medicationSchema = new Schema({
     type: String,
     required: true,
   },
-  duration: {
+  dosage: {
     type: Number,
     required: true,
   },

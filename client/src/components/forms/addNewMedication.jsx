@@ -13,7 +13,7 @@ export default function AddNewMedication({ clientId }) {
     description: '',
     quantity: 0,
     frequency: '',
-    duration: 0,
+    dosage: 0,
     status: '',
   });
 
@@ -42,7 +42,7 @@ export default function AddNewMedication({ clientId }) {
         description: '',
         quantity: 0,
         frequency: '',
-        duration: 0,
+        dosage: 0,
         status: '',
       });
       alert('Medication Added');
@@ -112,14 +112,14 @@ export default function AddNewMedication({ clientId }) {
               </div>
               <div className='form-control w-full max-w-xs'>
                 <label className='label'>
-                  <span className='label-text'>Duration</span>
+                  <span className='label-text'>Dosage</span>
                 </label>
                 <input
                   onChange={handleInputChange}
-                  value={medicationInput.duration}
-                  name='duration'
+                  value={medicationInput.dosage}
+                  name='dosage'
                   type='number'
-                  placeholder='Duration'
+                  placeholder='Dosage'
                   className='input input-bordered w-full max-w-xs'
                 />
               </div>

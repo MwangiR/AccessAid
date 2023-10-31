@@ -151,9 +151,9 @@ export default function ClientMedication({ clientId }) {
                               </p>
                             </div>
                             <div className='mt-2 flex flex-row items-baseline rounded-lg border border-gray-700 px-2 hover:border-[#840032]'>
-                              <strong className='font-medium text-white'>Duration: </strong>
+                              <strong className='font-medium text-white'>Dosage: </strong>
                               <p className='mt-1 text-s font-medium text-gray-300 ml-4'>
-                                {individualMedication.duration}
+                                {individualMedication.dosage}
                               </p>
                             </div>
                             <div className='mt-2 flex flex-row items-baseline rounded-lg border border-gray-700 px-2 hover:hover:border-[#840032]'>

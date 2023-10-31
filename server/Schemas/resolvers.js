@@ -233,7 +233,7 @@ const resolvers = {
           description,
           quantity,
           frequency,
-          duration,
+          dosage,
           notes,
           status,
         } = medicationInput;
@@ -254,7 +254,7 @@ const resolvers = {
 
         //convert to integers
         const quantityInt = parseInt(quantity);
-        const durationInt = parseInt(duration);
+        const dosageInt = parseInt(dosage);
 
         const newMedication = await Medication.create({
           clientId,
@@ -264,7 +264,7 @@ const resolvers = {
           description,
           frequency,
           quantity: quantityInt,
-          duration: durationInt,
+          dosage: dosageInt,
           notes,
           status,
         });
