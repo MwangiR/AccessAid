@@ -104,3 +104,19 @@ export const GET_MEDICATIONS = gql`
     }
   }
 `;
+
+export const GET_SINGLE_MEDICATION = gql`
+  query MEDICATION($id: ID!) {
+    medication(_id: $id) {
+      _id
+      timeOfDay
+      medicationName
+      notes
+      description
+      quantity
+      frequency
+      dosage
+      status
+    }
+  }
+`;

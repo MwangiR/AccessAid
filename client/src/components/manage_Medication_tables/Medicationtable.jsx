@@ -104,6 +104,8 @@ export default function MedicationTable({ medicationObj }) {
               </thead>
               <tbody>
                 {medicationObj.map((medication) => {
+                  const isFinished =
+                    medication.status === 'Finished' || medication.status === 'Ceased';
                   return (
                     <tr key={medication._id}>
                       <td>
@@ -140,6 +142,7 @@ export default function MedicationTable({ medicationObj }) {
                               checked={checkedMedications[medication._id] || false}
                               className='checkbox checkbox-default'
                               onChange={() => handleCheckboxChange(medication._id)}
+                              disabled={isFinished}
                             />
                           </label>
                         </div>
