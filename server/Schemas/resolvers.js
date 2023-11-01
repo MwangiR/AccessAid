@@ -59,6 +59,15 @@ const resolvers = {
         throw new Error(err);
       }
     },
+    medication: async (_, args) => {
+      try {
+        const medicationData = await Medication.findOne({ _id: args._id });
+        return medicationData;
+      } catch (err) {
+        console.error('Error fetching medication', err);
+        throw new Error(err);
+      }
+    },
   },
   Mutation: {
     registerUser: async (parent, args) => {
@@ -282,6 +291,39 @@ const resolvers = {
         return newMedication;
       } catch (error) {
         throw new Error('Failed to create medication: ' + error.message);
+      }
+    },
+
+    updateMedication: async (_, { updateMedicationInput }) => {
+      if (!updateMedicationInput) {
+        throw new Error('updateMedicationInput is required');
+      }
+      const {
+        _id,
+        timeOfDay,
+        medicationName,
+        description,
+        quantity,
+        frequency,
+        dosage,
+        notes,
+        status,
+      } = updateMedicationInput;
+      try {
+        if (!_id) {
+          throw new Error('medicationId is required');
+        }
+        const updatedMedication = await Medication.findByIdAndUpdate(
+          { _id },
+          { timeOfDay, medicationName, description, quantity, frequency, dosage, notes, status },
+          { new: true },
+        );
+        if (!updatedMedication) {
+          throw new Error('Failed to update medication');
+        }
+        return updatedMedication;
+      } catch (error) {
+        throw new Error('Failed to update medication: ' + error.message);
       }
     },
 

@@ -2,6 +2,7 @@ import { useMutation, useQuery } from '@apollo/client';
 import { GET_SINGLE_CLIENT } from '../../utils/queries';
 import { useState, useEffect } from 'react';
 import { DELETE_MEDICATION } from '../../utils/mutations';
+import EditMedication from '../forms/editMedication';
 
 /* eslint-disable react/prop-types */
 export default function ClientMedication({ clientId }) {
@@ -63,8 +64,8 @@ export default function ClientMedication({ clientId }) {
         </div>
       ) : (
         individualClientMedication.map((individualMedication) => {
-          //   const statusClass =
-          //     individualMedication.status === false ? 'badge badge-primary cursor-pointer' : '';
+          const isFinishedorCeased =
+            individualMedication.status === 'Finished' || individualMedication.status === 'Ceased';
           return (
             <div
               className='bg-white py-6 sm:py-8 lg:py-12 rounded-lg shadow-md'
@@ -77,7 +78,11 @@ export default function ClientMedication({ clientId }) {
                       <strong className='flex text-3xl font-thin leading-none text-left text-neutral-600 lg:text-4xl'>
                         {individualMedication.medicationName}
                         <span className='text-sm'>
-                          <div className='badge badge-success gap-2'>
+                          <div
+                            className={`badge badge-${
+                              isFinishedorCeased ? 'secondary' : 'primary'
+                            } gap-2`}
+                          >
                             {individualMedication.status}
                           </div>
                         </span>
@@ -174,9 +179,10 @@ export default function ClientMedication({ clientId }) {
                         >
                           Delete Medication
                         </button>
-                        <button className='btn btn-wide btn-sm btn-neutral m-2'>
+                        {/* <button className='btn btn-wide btn-sm btn-neutral m-2'>
                           Edit Medication
-                        </button>
+                        </button> */}
+                        <EditMedication Id={individualMedication._id} />
                         {/* <EditEvent Id={individualEvent._id} /> */}
                       </div>
                     </div>

@@ -67,6 +67,18 @@ const typeDefs = `
     notes: String
     status: String!
   }
+
+  input UpdateMedication {
+    _id: ID!
+    timeOfDay: String!
+    medicationName: String!
+    description: String!
+    quantity: String!
+    frequency: String!
+    dosage: String!
+    notes: String
+    status: String!
+  }
   
   input CreateEvent {
     clientId: ID!
@@ -110,6 +122,7 @@ const typeDefs = `
     updateEvent(updateEventInput: UpdateEvent): Event
     deleteEvent(eventId: ID!):Event
     createMedication(medicationInput: CreateMedication): Medication
+    updateMedication(updateMedicationInput: UpdateMedication): Medication
     updateMedchart(updateMedchart: [updateMedchart!]!): [Medication]
     deleteMedication(medicationId: ID!): Medication
   }
@@ -121,6 +134,7 @@ const typeDefs = `
     events: [Event]
     event(_id: ID!): Event
     medications: [Medication]
+    medication(_id: ID!): Medication
   }
 `;
 module.exports = typeDefs;

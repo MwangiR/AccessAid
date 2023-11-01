@@ -111,3 +111,19 @@ export const UPDATE_MEDCHART = gql`
     }
   }
 `;
+
+export const UPDATE_MEDICATION = gql`
+  mutation updateMedication($updateMedicationInput: UpdateMedication) {
+    updateMedication(updateMedicationInput: $updateMedicationInput) {
+      _id
+      timeOfDay
+      medicationName
+      description
+      quantity
+      frequency
+      dosage
+      notes
+      status
+    }
+  }
+`;
