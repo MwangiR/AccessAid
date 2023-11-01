@@ -61,7 +61,7 @@ export default function EditEvent(prop) {
       </button>
       <dialog id='editEventModal' className='modal'>
         <div className='modal-box w-11/12 max-w-5xl bg-[#98B9AB]'>
-          <h3 className='font-bold text-lg'>Hello! {prop.Id}</h3>
+          <h3 className='font-bold text-lg'>EventId: {prop.Id}</h3>
           <form className='space-y-4' onSubmit={handleSubmit}>
             <div className='grid grid-cols-1 gap-4 sm:grid-cols-2'>
               <label className='sr-only' htmlFor='name'>
