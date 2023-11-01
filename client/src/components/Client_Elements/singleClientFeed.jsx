@@ -107,7 +107,12 @@ export default function SingleClientEvent({ clientId }) {
 
                       <details className='w-full bg-[#E8F0FF] group rounded-lg border-s-4 border-green-500 bg-gray-50 p-6 [&_summary::-webkit-details-marker]:hidden'>
                         <summary className='flex cursor-pointer items-center justify-between gap-1.5 '>
-                          <h2 className='text-lg font-medium text-gray-900'>Event Details</h2>
+                          <h2 className='text-lg font-medium text-gray-900'>
+                            <p>Event Details</p>
+                            <div className='badge badge-info gap-2'>
+                              Due Date: {individualEvent.dueDate}
+                            </div>
+                          </h2>
 
                           <span className='shrink-0 rounded-full bg-white p-1.5 text-gray-900 sm:p-3'>
                             <svg

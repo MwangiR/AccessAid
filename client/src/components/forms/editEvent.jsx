@@ -66,8 +66,26 @@ export default function EditEvent(prop) {
         Edit Event
       </button>
       <dialog id='editEventModal' className='modal'>
-        <div className='modal-box w-11/12 max-w-5xl bg-[#98B9AB]'>
+        <div className='modal-box w-11/12 max-w-5xl bg-[#98B9AB] space-y-2'>
           <h3 className='font-bold text-lg'>EventId: {prop.Id}</h3>
+          <div tabIndex={0} className='collapse bg-base-200'>
+            <div className='collapse-title text-xl font-medium'>Previous Info</div>
+            <div className='collapse-content text-navGray'>
+              <p className='prose prose-base'>
+                <strong>Due Date:</strong> {singleEvent.dueDate}
+              </p>
+              <p className='prose prose-base'>
+                <strong>Event Category:</strong> {singleEvent.eventCategory}
+              </p>
+              <p className='prose prose-base'>
+                <strong>Status:</strong> {singleEvent.status}
+              </p>
+              <p className='prose prose-base'>
+                <strong>Notes:</strong> {singleEvent.notes}
+              </p>
+            </div>
+          </div>
+
           <form className='space-y-4' onSubmit={handleSubmit}>
             <div className='grid grid-cols-1 gap-4 sm:grid-cols-2'>
               <label className='sr-only' htmlFor='name'>

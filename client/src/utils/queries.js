@@ -20,6 +20,12 @@ export const GET_CLIENTS = gql`
       guardianName
       guardianContact
       createdAt: created_At
+      Events {
+        _id
+      }
+      Medications {
+        _id
+      }
     }
   }
 `;

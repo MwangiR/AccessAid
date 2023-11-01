@@ -125,6 +125,7 @@ const typeDefs = `
   type Mutation {
     registerUser(registerInput: RegisiterInput): Auth
     loginUser(loginInput: LoginInput): Auth
+    deleteUser(userId: ID!): Auth
     registerClient(clientInput: RegisterClient): Client
     updateClient(updateClientInput: UpdateClient): Client
     deleteClient(clientId: ID!): Client

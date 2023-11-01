@@ -22,12 +22,22 @@ const ClientDetails = ({ client }) => (
       <article className='prose lg:prose-xl'>Description:</article>
       <p className='font-mono ml-5'>{client.description}</p>
     </div>
+    <div className='flex flex-row items-baseline'>
+      <article className='prose lg:prose-xl'>Total Events:</article>
+      <p className='font-mono ml-5'>{client.Events.length} Event(s)</p>
+    </div>
+    <div className='flex flex-row items-baseline'>
+      <article className='prose lg:prose-xl'>Total Medication:</article>
+      <p className='font-mono ml-5'>{client.Medications.length} Medication(s)</p>
+    </div>
   </>
 );
 
 export default function ViewClients() {
   const { loading, data } = useQuery(GET_CLIENTS);
   const clientsData = data?.clients || [];
+
+  console.log('View Clients', clientsData);
 
   if (loading) {
     return <span className='loading loading-dots loading-lg'></span>;

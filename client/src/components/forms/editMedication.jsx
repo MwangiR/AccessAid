@@ -13,7 +13,7 @@ export default function EditMedication(prop) {
 
   const singleMedication = data?.medication || {};
 
-  //   console.log('Edit single medication', singleMedication);
+  console.log('Edit single medication', singleMedication);
 
   const [updateMedication] = useMutation(UPDATE_MEDICATION);
   const [formData, setFormData] = useState({
@@ -88,7 +88,7 @@ export default function EditMedication(prop) {
         Edit Medication
       </button>
       <dialog id='editMedication' className='modal'>
-        <div className='modal-box w-11/12 max-w-5xl bg-[#98B9AB]'>
+        <div className='modal-box w-11/12 max-w-5xl bg-[#98B9AB] space-y-3'>
           {alertMessage && (
             <div>
               <div className='toast toast-top toast-center'>
@@ -99,6 +99,35 @@ export default function EditMedication(prop) {
             </div>
           )}
           <h3 className='font-bold text-lg'>MedicationID: {prop.Id}</h3>
+          <div tabIndex={0} className='collapse bg-base-200'>
+            <div className='collapse-title text-xl font-medium'>Previous Info</div>
+            <div className='collapse-content text-navGray'>
+              <p className='prose prose-base'>
+                <strong>Medication Name:</strong> {singleMedication.medicationName}
+              </p>
+              <p className='prose prose-base'>
+                <strong>Time of Day:</strong> {singleMedication.timeOfDay}
+              </p>
+              <p className='prose prose-base'>
+                <strong>Frequency:</strong> {singleMedication.frequency}
+              </p>
+              <p className='prose prose-base'>
+                <strong>Quantity:</strong> {singleMedication.quantity}
+              </p>
+              <p className='prose prose-base'>
+                <strong>Status:</strong> {singleMedication.status}
+              </p>
+              <p className='prose prose-base'>
+                <strong>Dosage:</strong> {singleMedication.dosage}
+              </p>
+              <p className='prose prose-base'>
+                <strong>Notes:</strong> {singleMedication.notes}
+              </p>
+              <p className='prose prose-base'>
+                <strong>Description:</strong> {singleMedication.description}
+              </p>
+            </div>
+          </div>
           <form className='space-y-4 m-4'>
             <div className='grid grid-cols-1 gap-4 sm:grid-cols-2'>
               <div>
@@ -210,6 +239,7 @@ export default function EditMedication(prop) {
                 type='text'
                 placeholder='Description'
                 className='input input-bordered w-full max-w-xs'
+                required
               />
             </div>
 
@@ -224,6 +254,7 @@ export default function EditMedication(prop) {
                 name='notes'
                 value={formData.notes}
                 onChange={handleInputChange}
+                required
               ></textarea>
             </div>
 
