@@ -21,7 +21,7 @@ export default function EditMedication(prop) {
     timeOfDay: singleMedication.timeOfDay || '',
     frequency: singleMedication.frequency || '',
     quantity: singleMedication.quantity || 0,
-    status: singleMedication.status || 'Active',
+    status: singleMedication.status || '',
     dosage: singleMedication.dosage || 0,
     notes: singleMedication.notes || '',
     description: singleMedication.description || '',
@@ -80,15 +80,6 @@ export default function EditMedication(prop) {
 
   return (
     <>
-      {alertMessage && (
-        <div>
-          <div className='toast toast-top toast-center'>
-            <div className={`alert alert-info`}>
-              <span>{alertMessage}</span>
-            </div>
-          </div>
-        </div>
-      )}
       {/* You can open the modal using document.getElementById('ID').showModal() method */}
       <button
         className='btn btn-wide btn-sm btn-neutral m-2'
@@ -98,6 +89,15 @@ export default function EditMedication(prop) {
       </button>
       <dialog id='editMedication' className='modal'>
         <div className='modal-box w-11/12 max-w-5xl bg-[#98B9AB]'>
+          {alertMessage && (
+            <div>
+              <div className='toast toast-top toast-center'>
+                <div className={`alert alert-info`}>
+                  <span>{alertMessage}</span>
+                </div>
+              </div>
+            </div>
+          )}
           <h3 className='font-bold text-lg'>MedicationID: {prop.Id}</h3>
           <form className='space-y-4 m-4'>
             <div className='grid grid-cols-1 gap-4 sm:grid-cols-2'>
@@ -188,7 +188,7 @@ export default function EditMedication(prop) {
                   value={formData.timeOfDay}
                   onChange={handleInputChange}
                 >
-                  <option disabled selected>
+                  <option disabled value=''>
                     Time Of Day
                   </option>
                   <option value='Morning'>Morning</option>

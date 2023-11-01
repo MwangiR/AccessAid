@@ -34,6 +34,14 @@ userSchema.pre('save', async function (next) {
   next();
 });
 
+//make email lowercase
+userSchema.pre('save', function (next) {
+  if (this.isModified('email')) {
+    this.email = this.email.toLowerCase();
+  }
+  next();
+});
+
 // compare the incoming password with the hashed password in our database
 userSchema.methods.isCorrectPassword = async function (password) {
   return await bcrypt.compare(password, this.password);

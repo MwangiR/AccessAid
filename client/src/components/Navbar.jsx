@@ -3,6 +3,10 @@ import auth from '../utils/auth';
 import LoginForm from './forms/loginForm';
 import SignupForm from './forms/signupForm';
 
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 const Navbar = () => {
   return (
     <div className='navbar bg-navGray text-anti-white'>
@@ -81,8 +85,8 @@ const Navbar = () => {
       <div className='navbar-end'>
         {auth.loggedIn() ? (
           <div>
-            <Link className='btn btn-ghost normal-case text-m' to='/profile'>
-              {auth.getProfile().data.username} Profile
+            <Link className='btn btn-link normal-case text-m text-anti-white' to='/profile'>
+              {capitalizeFirstLetter(auth.getProfile().data.username)} Profile
             </Link>
             <button className='btn rounded-full hover:rounded-sm' onClick={() => auth.logout()}>
               LOGOUT

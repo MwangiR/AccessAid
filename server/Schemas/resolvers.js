@@ -115,6 +115,29 @@ const resolvers = {
 
       return await newClient.save();
     },
+
+    updateClient: async (_, { updateClientInput }) => {
+      if (!updateClientInput) {
+        throw new Error('updateClientInput is required');
+      }
+      const { _id, name, email, description, guardianName, guardianContact } = updateClientInput;
+      try {
+        if (!_id) {
+          throw new Error('clientId is required');
+        }
+        const updatedClient = await Client.findByIdAndUpdate(
+          { _id },
+          { name, email, description, guardianName, guardianContact },
+          { new: true },
+        );
+        if (!updatedClient) {
+          throw new Error('Failed to update client');
+        }
+        return updatedClient;
+      } catch (err) {
+        throw new Error('Failed to update client: ' + err.message);
+      }
+    },
     createEvent: async (_, { eventInput }) => {
       const { clientId, eventCategory, notes, dueDate, status } = eventInput;
 
