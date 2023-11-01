@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from '@apollo/client';
 import { UPDATE_EVENT } from '../../utils/mutations';
 import { GET_SINGLE_EVENT } from '../../utils/queries';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function EditEvent(prop) {
   const { loading, data } = useQuery(GET_SINGLE_EVENT, {
@@ -9,6 +9,7 @@ export default function EditEvent(prop) {
   });
   const singleEvent = data?.event || {};
 
+  const [alertMessage, setAlertMessage] = useState(null);
   //   console.log('Edit event id', singleEvent);
 
   const [updateEvent] = useMutation(UPDATE_EVENT);
@@ -24,6 +25,17 @@ export default function EditEvent(prop) {
     setFormData({ ...formData, [name]: value });
   };
 
+  useEffect(() => {
+    if (alertMessage) {
+      const timer = setTimeout(() => {
+        setAlertMessage(null);
+        setFormData({});
+        window.location.reload();
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [alertMessage]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -38,10 +50,10 @@ export default function EditEvent(prop) {
           },
         },
       });
-      alert('successfully changed');
+      setAlertMessage('successfully changed');
     } catch (err) {
       console.log(err.message);
-      alert(err.message);
+      setAlertMessage(err.message);
     }
   };
 
@@ -66,6 +78,15 @@ export default function EditEvent(prop) {
         Edit Event
       </button>
       <dialog id='editEventModal' className='modal'>
+        {alertMessage && (
+          <div>
+            <div className='toast toast-top toast-center'>
+              <div className={`alert alert-info`}>
+                <span>{alertMessage}</span>
+              </div>
+            </div>
+          </div>
+        )}
         <div className='modal-box w-11/12 max-w-5xl bg-[#98B9AB] space-y-2'>
           <h3 className='font-bold text-lg'>EventId: {prop.Id}</h3>
           <div tabIndex={0} className='collapse bg-base-200'>
