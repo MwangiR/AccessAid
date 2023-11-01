@@ -39,6 +39,16 @@ export const GET_EVENTS = gql`
   }
 `;
 
+export const SHOW_EVENT_DATES = gql`
+  query EVENT {
+    events {
+      dueDate
+      status
+      clientName
+    }
+  }
+`;
+
 export const GET_SINGLE_CLIENT = gql`
   query CLIENT($id: ID!) {
     client(_id: $id) {
