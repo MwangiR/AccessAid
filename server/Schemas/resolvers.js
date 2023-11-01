@@ -150,36 +150,19 @@ const resolvers = {
     },
 
     deleteClient: async (_, { clientId }) => {
-      //find client by id
+      if (!clientId) throw new Error('clientId is required');
 
       try {
-        if (!clientId) {
-          throw new Error('clientId is required');
-        }
-
-        // find the client document using the client ID
         const client = await Client.findById(clientId);
+        if (!client) throw new Error('Client Not found');
 
-        if (!client) {
-          throw new Error('Client Not found');
-        }
+        await Promise.all([
+          Event.deleteMany({ _id: { $in: client.Events } }),
+          Medication.deleteMany({ _id: { $in: client.Medications } }),
+          Client.findByIdAndDelete(clientId),
+        ]);
 
-        //delete associated Events and Medications
-        for (const eventId of client.Events) {
-          await Event.findByIdAndDelete(eventId);
-        }
-
-        for (const medicationId of client.Medications) {
-          await Medication.findByIdAndDelete(medicationId);
-        }
-
-        const deletedClient = await Client.findByIdAndDelete(clientId);
-
-        if (!deletedClient) {
-          throw new Error('Failed to delete client');
-        }
-
-        return deletedClient;
+        return client;
       } catch (error) {
         throw new Error('Failed to delete client: ' + error.message);
       }

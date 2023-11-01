@@ -179,11 +179,7 @@ export default function ClientMedication({ clientId }) {
                         >
                           Delete Medication
                         </button>
-                        {/* <button className='btn btn-wide btn-sm btn-neutral m-2'>
-                          Edit Medication
-                        </button> */}
                         <EditMedication Id={individualMedication._id} />
-                        {/* <EditEvent Id={individualEvent._id} /> */}
                       </div>
                     </div>
                   </div>

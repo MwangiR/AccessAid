@@ -76,8 +76,8 @@ export default function SingleClientEvent({ clientId }) {
           </div>
         ) : (
           individualClientEvents.map((individualEvent) => {
-            const statusClass =
-              individualEvent.status === false ? 'badge badge-primary cursor-pointer' : '';
+            const isCancelledorReschedule =
+              individualEvent.status === 'Cancelled' || individualEvent.status === 'Rescheduled';
             return (
               <div
                 className='bg-white py-6 sm:py-8 lg:py-12 rounded-lg shadow-md'
@@ -88,18 +88,24 @@ export default function SingleClientEvent({ clientId }) {
                     <div className='flex flex-wrap py-8 md:flex-nowrap'>
                       <div className='flex flex-col flex-shrink-0 px-2 mb-6 md:w-60 md:mb-0'>
                         <strong className='flex text-3xl font-thin leading-none text-left text-neutral-600 lg:text-4xl'>
-                          {individualEvent.clientName} <span className='text-sm'>PPI </span>
+                          {individualEvent.eventCategory}
+                          <span className='text-sm'>
+                            <div
+                              className={`badge badge-${
+                                isCancelledorReschedule ? 'primary' : 'secondary'
+                              } gap-2`}
+                            >
+                              {individualEvent.status}
+                            </div>
+                          </span>
                         </strong>
                         <span className='mt-1 text-xs font-normal leading-relaxed text-gray-700'>
-                          {individualEvent.eventCategory}
-                          <p>{individualEvent._id}</p>
+                          {individualEvent.clientName}
+                          <p>EventID: {individualEvent._id}</p>
                         </span>
                       </div>
                       <div className='prose md:flex-grow prose-md'>
                         <p>{individualEvent.notes}</p>
-                        {individualEvent.status === false && (
-                          <div className={statusClass}>Pending</div>
-                        )}
                       </div>
                       <div className='flex flex-col ml-3 mt-[-20px]'>
                         <div className='m-4'>
