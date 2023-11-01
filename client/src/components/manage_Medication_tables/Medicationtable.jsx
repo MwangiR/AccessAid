@@ -1,5 +1,21 @@
+import { useState } from 'react';
+
 /* eslint-disable react/prop-types */
 export default function MedicationTable({ medicationObj }) {
+  const [medications, setMedications] = useState(medicationObj);
+
+  const handleCheckboxChange = (medId) => {
+    const updatedMedications = medications.map((medication) => {
+      if (medication._id === medId) {
+        const newQuantity = medication.quantity - medication.dosage;
+        const newStatus = newQuantity === 0 ? 'Finished' : medication.status;
+        return { ...medication, quantity: newQuantity, status: newStatus };
+      }
+      return medication;
+    });
+    setMedications(updatedMedications);
+  };
+
   console.log('Meds loaded...', medicationObj);
   return (
     <>
@@ -30,7 +46,7 @@ export default function MedicationTable({ medicationObj }) {
                   <th>Medication Name</th>
                   <th>Client Name</th>
                   <th>Status</th>
-                  <th></th>
+                  <th>Administered</th>
                 </tr>
               </thead>
               <tbody>
@@ -49,15 +65,31 @@ export default function MedicationTable({ medicationObj }) {
                         {medication.clientName}
                         <br />
                         <span className='badge badge-ghost badge-sm'>
-                          Desktop Support Technician
+                          Meds Remaining: {medication.quantity}
                         </span>
                       </td>
                       <td>
                         {medication.status}
-                        <div className='text-sm opacity-50'>{medication.frequency}</div>
+                        <div className='text-sm opacity-50'>
+                          <div className='badge badge-neutral badge-sm'>
+                            Frequency: {medication.frequency}
+                          </div>
+                          <div className='badge badge-secondary badge-sm ml-3'>
+                            Dosage: {medication.dosage}
+                          </div>
+                        </div>
                       </td>
                       <th>
-                        <button className='btn btn-active btn-neutra btn-xs'>details</button>
+                        <div className='form-control'>
+                          <label className='cursor-pointer label'>
+                            <input
+                              type='checkbox'
+                              checked={medication.status === 'Finished'}
+                              className='checkbox checkbox-default'
+                              onChange={() => handleCheckboxChange(medication._id)}
+                            />
+                          </label>
+                        </div>
                       </th>
                     </tr>
                   );
