@@ -212,7 +212,7 @@ export default function ManageClients() {
           </main>
 
           <nav className='order-first bg-purple-200 text-anti-white shadow-md bg-navGray flex flex-col'>
-            <div className='m-4'>sidebar</div>
+            <div className='m-4'>{/* <p>sidebar</p> */}</div>
           </nav>
 
           <aside className=' bg-yellow-100'>

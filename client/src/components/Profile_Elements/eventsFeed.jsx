@@ -31,7 +31,15 @@ const EventItem = ({ event }) => {
           <span className='text-sm font-normal text-slate-400'>{formatDate(event.createdAt)}</span>
           <div className='mx-3 badge badge-primary badge-outline'>{event.status}</div>
         </h4>
-        <p className=' text-slate-500'>{event.notes}</p>
+        <div className='collapse bg-[#AFBED1]'>
+          <input type='checkbox' className='peer' />
+          <div className='collapse-title bg-[#AFBED1] text-navGray peer-checked:bg-secondary peer-checked:text-secondary-content'>
+            Event Notes
+          </div>
+          <div className='collapse-content bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content'>
+            <p className=' text-slate-500'>{event.notes}</p>
+          </div>
+        </div>
       </div>
     </li>
   );

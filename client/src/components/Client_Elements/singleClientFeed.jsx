@@ -105,8 +105,8 @@ export default function SingleClientEvent({ clientId }) {
                       </div>
                       {/* <div className='prose md:flex-grow prose-md'> */}
 
-                      <details className='w-full group border-s-4 border-green-500 bg-gray-50 p-6 [&_summary::-webkit-details-marker]:hidden'>
-                        <summary className='flex cursor-pointer items-center justify-between gap-1.5'>
+                      <details className='w-full bg-[#E8F0FF] group rounded-lg border-s-4 border-green-500 bg-gray-50 p-6 [&_summary::-webkit-details-marker]:hidden'>
+                        <summary className='flex cursor-pointer items-center justify-between gap-1.5 '>
                           <h2 className='text-lg font-medium text-gray-900'>Event Details</h2>
 
                           <span className='shrink-0 rounded-full bg-white p-1.5 text-gray-900 sm:p-3'>
@@ -125,7 +125,7 @@ export default function SingleClientEvent({ clientId }) {
                           </span>
                         </summary>
 
-                        <p className='mt-4 leading-relaxed text-gray-700'>
+                        <p className='mt-4 leading-relaxed text-gray-700 '>
                           Event Notes: {individualEvent.notes}
                         </p>
                       </details>
