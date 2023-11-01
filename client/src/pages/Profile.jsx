@@ -7,6 +7,7 @@ import ViewClients from '../components/Profile_Elements/viewClients';
 import EventsFeed from '../components/Profile_Elements/eventsFeed';
 import modalComponent from '../components/modalComponent';
 import AddNewClient from '../components/forms/addNewClient';
+import DemoApp from '../components/Profile_Elements/testCalender';
 
 export default function Profile() {
   if (auth.loggedIn) {
@@ -20,6 +21,18 @@ export default function Profile() {
             <div className='flex-1 flex flex-col sm:flex-row'>
               <main className='flex-1 bg-indigo-100'>
                 <UserProfile />
+
+                <div className='flex justify-center'>
+                  <div className='w-full px-10 my-4 mx-20 py-6 bg-white rounded-lg shadow-md '>
+                    <div tabIndex={0} className='collapse collapse-open bg-base-200'>
+                      <div className='collapse-title text-xl font-medium'>Calender</div>
+                      <div className='collapse-content'>
+                        <DemoApp />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
                 <EventsFeed />
                 <ViewClients />
               </main>
