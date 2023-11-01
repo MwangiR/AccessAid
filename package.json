@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "description": "Disability CMS for care-givers and clients to make day-to-day routines easier and manageable.",
   "main": "server/server.js",
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
+    "start": "node server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
     "install": "cd server && npm i && cd ../client && npm i",
