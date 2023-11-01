@@ -136,7 +136,7 @@ export default function AddNewMedication({ clientId }) {
                   onChange={handleInputChange}
                   value={medicationInput.status}
                 >
-                  <option disabled selected>
+                  <option disabled value=''>
                     Status
                   </option>
                   <option value='Active'>Active</option>
@@ -155,7 +155,7 @@ export default function AddNewMedication({ clientId }) {
                   onChange={handleInputChange}
                   value={medicationInput.timeOfDay}
                 >
-                  <option disabled selected>
+                  <option disabled value=''>
                     Time Of Day
                   </option>
                   <option value='Morning'>Morning</option>

@@ -38,6 +38,19 @@ export const REGISTER_CLIENT = gql`
   }
 `;
 
+export const UPDATE_CLIENT = gql`
+  mutation updateClient($updateClientInput: UpdateClient) {
+    updateClient(updateClientInput: $updateClientInput) {
+      _id
+      name
+      email
+      description
+      guardianName
+      guardianContact
+    }
+  }
+`;
+
 export const DELETE_CLIENT = gql`
   mutation deleteClient($clientId: ID!) {
     deleteClient(clientId: $clientId) {

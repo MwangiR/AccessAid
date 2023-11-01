@@ -56,6 +56,15 @@ const typeDefs = `
     guardianContact: Int
   }
 
+  input UpdateClient {
+    _id: ID!
+    name: String!
+    email: String!
+    description: String
+    guardianName: String
+    guardianContact: Int
+  }
+
   input CreateMedication {
     clientId: ID!
     timeOfDay: String!
@@ -117,6 +126,7 @@ const typeDefs = `
     registerUser(registerInput: RegisiterInput): Auth
     loginUser(loginInput: LoginInput): Auth
     registerClient(clientInput: RegisterClient): Client
+    updateClient(updateClientInput: UpdateClient): Client
     deleteClient(clientId: ID!): Client
     createEvent(eventInput: CreateEvent): Event
     updateEvent(updateEventInput: UpdateEvent): Event

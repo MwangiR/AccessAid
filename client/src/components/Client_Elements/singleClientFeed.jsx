@@ -80,7 +80,7 @@ export default function SingleClientEvent({ clientId }) {
               individualEvent.status === 'Cancelled' || individualEvent.status === 'Rescheduled';
             return (
               <div
-                className='bg-white py-6 sm:py-8 lg:py-12 rounded-lg shadow-md'
+                className='bg-white py-6 sm:py-8 lg:py-12 rounded-lg shadow-md '
                 key={individualEvent._id}
               >
                 <div className=' flex flex-col lg:px-6'>
@@ -89,24 +89,47 @@ export default function SingleClientEvent({ clientId }) {
                       <div className='flex flex-col flex-shrink-0 px-2 mb-6 md:w-60 md:mb-0'>
                         <strong className='flex text-3xl font-thin leading-none text-left text-neutral-600 lg:text-4xl'>
                           {individualEvent.eventCategory}
-                          <span className='text-sm'>
-                            <div
-                              className={`badge badge-${
-                                isCancelledorReschedule ? 'primary' : 'secondary'
-                              } gap-2`}
-                            >
-                              {individualEvent.status}
-                            </div>
-                          </span>
+                          <span className='text-sm'></span>
                         </strong>
+                        <div
+                          className={`badge badge-${
+                            isCancelledorReschedule ? 'primary' : 'secondary'
+                          } gap-2 my-2`}
+                        >
+                          {individualEvent.status}
+                        </div>
                         <span className='mt-1 text-xs font-normal leading-relaxed text-gray-700'>
                           {individualEvent.clientName}
                           <p>EventID: {individualEvent._id}</p>
                         </span>
                       </div>
-                      <div className='prose md:flex-grow prose-md'>
-                        <p>{individualEvent.notes}</p>
-                      </div>
+                      {/* <div className='prose md:flex-grow prose-md'> */}
+
+                      <details className='w-full group border-s-4 border-green-500 bg-gray-50 p-6 [&_summary::-webkit-details-marker]:hidden'>
+                        <summary className='flex cursor-pointer items-center justify-between gap-1.5'>
+                          <h2 className='text-lg font-medium text-gray-900'>Event Details</h2>
+
+                          <span className='shrink-0 rounded-full bg-white p-1.5 text-gray-900 sm:p-3'>
+                            <svg
+                              xmlns='http://www.w3.org/2000/svg'
+                              className='h-5 w-5 shrink-0 transition duration-300 group-open:-rotate-45'
+                              viewBox='0 0 20 20'
+                              fill='currentColor'
+                            >
+                              <path
+                                fillRule='evenodd'
+                                d='M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z'
+                                clipRule='evenodd'
+                              />
+                            </svg>
+                          </span>
+                        </summary>
+
+                        <p className='mt-4 leading-relaxed text-gray-700'>
+                          Event Notes: {individualEvent.notes}
+                        </p>
+                      </details>
+                      {/* </div> */}
                       <div className='flex flex-col ml-3 mt-[-20px]'>
                         <div className='m-4'>
                           <button

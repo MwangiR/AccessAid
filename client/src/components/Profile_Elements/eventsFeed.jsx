@@ -4,7 +4,7 @@ import { GET_EVENTS } from '../../utils/queries';
 import formatDate from '../../utils/dateFormat';
 
 const EventItem = ({ event }) => {
-  const statusClass = event.status === 'true' ? 'badge badge-primary cursor-pointer ml-6' : '';
+  // const statusClass = event.status === 'true' ? 'badge badge-primary cursor-pointer ml-6' : '';
   return (
     <li role='article' className='relative pl-8 mt-4' key={event._id}>
       <div className='flex flex-col flex-1 gap-4'>
@@ -29,7 +29,7 @@ const EventItem = ({ event }) => {
             </span>
           </span>
           <span className='text-sm font-normal text-slate-400'>{formatDate(event.createdAt)}</span>
-          {event.status === 'true' && <div className={statusClass}>Pending</div>}
+          <div className='mx-3 badge badge-primary badge-outline'>{event.status}</div>
         </h4>
         <p className=' text-slate-500'>{event.notes}</p>
       </div>

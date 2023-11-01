@@ -1,36 +1,19 @@
 /* eslint-disable react/prop-types */
-import { useMutation, useQuery } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import { REGISTER_EVENT } from '../../utils/mutations';
 import { useState } from 'react';
-import { GET_SINGLE_CLIENT } from '../../utils/queries';
-
-// const initialState = { events: [] };
 
 export default function AddNewEvent({ clientId }) {
   const [registerEvent] = useMutation(REGISTER_EVENT);
-
-  // const [state, dispatch] = useReducer(clientReducer, initialState);
-  // const [addNewEvent, setNewEvent] = usestate([])
-
   const [alertMessage, setAlertMessage] = useState(null);
   const [dueDate, setDueDate] = useState('');
   const [eventCategory, setEventCategory] = useState('');
   const [status, setStatus] = useState('');
   const [notes, setNotes] = useState('');
 
-  // const handleOptionChange = (e) => {
-  //   setSelectedOption(e.target.value);
-  // };
-
-  const { data } = useQuery(GET_SINGLE_CLIENT, {
-    variables: {
-      id: clientId,
-    },
-  });
-
   const handleRegisterEvent = async () => {
     try {
-      const { data } = await registerEvent({
+      await registerEvent({
         variables: {
           eventInput: {
             clientId,
@@ -47,7 +30,7 @@ export default function AddNewEvent({ clientId }) {
       window.location.reload();
     } catch (err) {
       console.error('Error', err.message);
-      setAlertMessage('Error registering event');
+      setAlertMessage('Error registering event', err.message);
     }
   };
 
@@ -116,7 +99,7 @@ export default function AddNewEvent({ clientId }) {
                   value={eventCategory}
                   onChange={(e) => setEventCategory(e.target.value)}
                 >
-                  <option disabled selected>
+                  <option disabled value=''>
                     Event Category
                   </option>
                   <option value='1:1 Support'>1:1 Support</option>
@@ -133,7 +116,7 @@ export default function AddNewEvent({ clientId }) {
                 value={status}
                 onChange={(e) => setStatus(e.target.value)}
               >
-                <option disabled selected>
+                <option disabled value=''>
                   Event Status
                 </option>
                 <option value='Completed'>Complete</option>
