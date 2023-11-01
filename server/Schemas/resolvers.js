@@ -103,6 +103,21 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
+
+    deleteUser: async (_, { userId }) => {
+      try {
+        if (!userId) {
+          throw new Error('userId is required');
+        }
+        const user = await User.findByIdAndDelete(userId);
+        if (!user) {
+          throw new Error('User not found');
+        }
+        return user;
+      } catch (error) {
+        throw new Error('Failed to delete user: ' + error.message);
+      }
+    },
     registerClient: async (_, { clientInput }) => {
       // const { name, email, description, guardianName, guardianContact } = registerClient;
       // Check if a client with the same email already exists

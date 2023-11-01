@@ -28,7 +28,9 @@ const EventItem = ({ event }) => {
               has a new {event.eventCategory}
             </span>
           </span>
-          <span className='text-sm font-normal text-slate-400'>{formatDate(event.createdAt)}</span>
+          <span className='text-sm font-normal text-slate-400'>
+            Created On: {formatDate(event.createdAt)}
+          </span>
           <div className='mx-3 badge badge-primary badge-outline'>{event.status}</div>
         </h4>
         <div className='collapse bg-[#AFBED1]'>

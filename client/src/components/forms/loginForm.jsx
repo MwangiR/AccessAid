@@ -1,6 +1,6 @@
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../../utils/mutations';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import auth from '../../utils/auth';
 
 const LoginForm = () => {
@@ -13,6 +13,15 @@ const LoginForm = () => {
     const { name, value } = event.target;
     setUserFormData({ ...userFormData, [name]: value });
   };
+
+  useEffect(() => {
+    if (alertMessage) {
+      const timer = setTimeout(() => {
+        setAlertMessage(null);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [alertMessage]);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();

@@ -26,6 +26,14 @@ export const REGISTER_USER = gql`
   }
 `;
 
+export const DELETE_USER = gql`
+  mutation deleteUser($userId: ID!) {
+    deleteUser(userId: $userId) {
+      _id
+    }
+  }
+`;
+
 export const REGISTER_CLIENT = gql`
   mutation registerClient($clientInput: RegisterClient) {
     registerClient(clientInput: $clientInput) {
