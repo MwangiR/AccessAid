@@ -1,20 +1,64 @@
-import { useState } from 'react';
+import { useMutation } from '@apollo/client';
+import { useEffect, useState } from 'react';
+import { UPDATE_MEDCHART } from '../../utils/mutations';
 
 /* eslint-disable react/prop-types */
 export default function MedicationTable({ medicationObj }) {
   const [medications, setMedications] = useState(medicationObj);
+  const [checkedMedications, setCheckedMedications] = useState({});
+  const [alertMessage, setAlertMessage] = useState(null);
+  const [alertType, setAlertType] = useState('success');
+
+  const [updateMedchart] = useMutation(UPDATE_MEDCHART);
 
   const handleCheckboxChange = (medId) => {
     const updatedMedications = medications.map((medication) => {
       if (medication._id === medId) {
         const newQuantity = medication.quantity - medication.dosage;
         const newStatus = newQuantity === 0 ? 'Finished' : medication.status;
+        console.log('New Status', newQuantity);
         return { ...medication, quantity: newQuantity, status: newStatus };
       }
       return medication;
     });
     setMedications(updatedMedications);
+    const updatedCheckedMedications = { ...checkedMedications };
+    updatedCheckedMedications[medId] = !updatedCheckedMedications[medId];
+    setCheckedMedications(updatedCheckedMedications);
   };
+
+  useEffect(() => {
+    if (alertMessage) {
+      const timer = setTimeout(() => {
+        setAlertMessage(null);
+        setCheckedMedications({});
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [alertMessage]);
+
+  async function handleUpdateMedchart() {
+    const updateMedChart = medications.map((medication) => ({
+      _id: medication._id,
+      status: medication.status,
+      quantity: medication.quantity.toString(),
+    }));
+
+    try {
+      await updateMedchart({
+        variables: {
+          updateMedchart: updateMedChart,
+        },
+      });
+      console.log('Medchart updated Successfully');
+      setAlertType('success');
+      setAlertMessage('Medchart updated Successfully');
+    } catch (err) {
+      console.error(err);
+      setAlertType('error');
+      setAlertMessage('Error updating medchart');
+    }
+  }
 
   console.log('Meds loaded...', medicationObj);
   return (
@@ -40,6 +84,15 @@ export default function MedicationTable({ medicationObj }) {
             </div>
           ) : (
             <table className='table'>
+              {alertMessage && (
+                <div>
+                  <div className='toast toast-top toast-center'>
+                    <div className={`alert alert-${alertType}`}>
+                      <span>{alertMessage}</span>
+                    </div>
+                  </div>
+                </div>
+              )}
               {/* head */}
               <thead>
                 <tr>
@@ -84,7 +137,7 @@ export default function MedicationTable({ medicationObj }) {
                           <label className='cursor-pointer label'>
                             <input
                               type='checkbox'
-                              checked={medication.status === 'Finished'}
+                              checked={checkedMedications[medication._id] || false}
                               className='checkbox checkbox-default'
                               onChange={() => handleCheckboxChange(medication._id)}
                             />
@@ -95,6 +148,9 @@ export default function MedicationTable({ medicationObj }) {
                   );
                 })}
               </tbody>
+              <button className='btn btn-info mt-6' onClick={handleUpdateMedchart}>
+                Update MedChart
+              </button>
             </table>
           )}
         </div>

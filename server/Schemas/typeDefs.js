@@ -95,6 +95,12 @@ const typeDefs = `
     dueDate:String
   }
 
+  input updateMedchart {
+    _id: ID!
+    status: String!
+    quantity: String!
+  }
+
   type Mutation {
     registerUser(registerInput: RegisiterInput): Auth
     loginUser(loginInput: LoginInput): Auth
@@ -104,6 +110,7 @@ const typeDefs = `
     updateEvent(updateEventInput: UpdateEvent): Event
     deleteEvent(eventId: ID!):Event
     createMedication(medicationInput: CreateMedication): Medication
+    updateMedchart(updateMedchart: [updateMedchart!]!): [Medication]
     deleteMedication(medicationId: ID!): Medication
   }
 

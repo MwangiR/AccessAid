@@ -284,6 +284,38 @@ const resolvers = {
         throw new Error('Failed to create medication: ' + error.message);
       }
     },
+
+    updateMedchart: async (_, { updateMedchart }) => {
+      if (!updateMedchart || updateMedchart.length === 0) {
+        throw new Error('updateMedchart is required');
+      }
+      try {
+        const updatedMedications = await Promise.all(
+          updateMedchart.map(async (med) => {
+            const { _id, status, quantity } = med;
+            if (!_id) {
+              throw new Error('medicationId is required');
+            }
+
+            //consvert quantity to an integer
+            // const quantityInt = parseInt(quantity);
+            const updatedMedchart = await Medication.findByIdAndUpdate(
+              { _id },
+              { status, quantity },
+              { new: true },
+            );
+            if (!updatedMedchart) {
+              throw new Error('Failed to update medication');
+            }
+            return updatedMedchart;
+          }),
+        );
+
+        return updatedMedications;
+      } catch (error) {
+        throw new Error('Failed to update medication: ' + error.message);
+      }
+    },
     deleteMedication: async (_, { medicationId }) => {
       //find medication by id
       if (!medicationId) {

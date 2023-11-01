@@ -101,3 +101,13 @@ export const CREATE_MEDICATION = gql`
     }
   }
 `;
+
+export const UPDATE_MEDCHART = gql`
+  mutation updateMedchart($updateMedchart: [updateMedchart!]!) {
+    updateMedchart(updateMedchart: $updateMedchart) {
+      _id
+      status
+      quantity
+    }
+  }
+`;
