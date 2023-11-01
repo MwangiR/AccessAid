@@ -36,7 +36,7 @@ export default function Profile() {
                 </div>
               </nav>
 
-              <aside className='sm:w-32 bg-yellow-100'>Right Sidebar</aside>
+              <aside className='sm:w-32 bg-yellow-100'>{/* <p>Right sidebar</p> */}</aside>
             </div>
             {/* 
           <footer className='bg-gray-100'>Footer</footer> */}

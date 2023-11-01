@@ -95,8 +95,8 @@ export default function ClientMedication({ clientId }) {
                       </span>
                     </div>
                     <div className='prose md:flex-grow prose-md'>
-                      <div className='bg-[#E8F0FF]'>
-                        <details className='group p-4'>
+                      <div className='bg-[#E8F0FF] rounded-xl'>
+                        <details className='group p-4 border-s-4'>
                           <summary className='relative flex cursor-pointer list-none gap-4 pr-8 font-medium text-slate-700 transition-colors duration-300 focus-visible:outline-none group-hover:text-slate-900  [&::-webkit-details-marker]:hidden'>
                             <svg
                               xmlns='http://www.w3.org/2000/svg'

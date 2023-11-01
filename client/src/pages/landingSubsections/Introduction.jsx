@@ -13,19 +13,18 @@ export default function Introduciton() {
           <p className='text-gray-800 text-3xl font-semibold sm:text-4xl'>
             Build the future with us
           </p>
-          <p className='text-gray-600'>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet itaque numquam libero
-            laudantium dolor quas eum fugit, quam vel nostrum sit mollitia ratione, architecto ex
-            non sequi blanditiis excepturi aperiam. Labore reiciendis architecto minus debitis nobis
-            mollitia id pariatur laborum non fugiat alias officia officiis accusantium, voluptate,
-            libero praesentium doloremque molestias soluta numquam quas consequuntur unde quam at.
-            Aliquid, porro!
+          <p className='text-gray-600 text-justify'>
+            We understand the importance of professional caregiving in today`&apos`s world. Our
+            mission is to make a positive impact on the lives of those in need by delivering
+            high-quality care and support. We believe that everyone deserves to live a life filled
+            with dignity, comfort, and happiness.
           </p>
         </div>
         <div className='mt-4'>
           <a
             // href='javascript:void(0)'
-            className='inline-block py-2 px-4 text-white font-medium bg-gray-800 duration-150 hover:bg-gray-700 active:bg-gray-900 rounded-lg shadow-md hover:shadow-none'
+            className='inline-block py-2 px-4 text-white font-medium bg-gray-800 duration-150 hover:bg-gray-700 active:bg-gray-900 rounded-lg shadow-md hover:shadow-none cursor-pointer'
+            onClick={() => document.getElementById('login').showModal()}
           >
             Get started
           </a>

@@ -104,7 +104,9 @@ const Navbar = () => {
           <div className='modal-box w-11/12 max-w-5xl'>
             <form method='dialog'>
               {/* if there is a button in form, it will close the modal */}
-              <button className='btn btn-sm btn-circle btn-ghost absolute right-2 top-2'>✕</button>
+              <button className='btn btn-sm btn-circle btn-ghost absolute right-2 top-2 text-navGray'>
+                ✕
+              </button>
             </form>
             <div className='flex flex-row justify-center'>
               {/* Login Component  */}

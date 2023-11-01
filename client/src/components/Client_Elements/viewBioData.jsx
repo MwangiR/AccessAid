@@ -3,6 +3,7 @@ import { useMutation, useQuery } from '@apollo/client';
 import { GET_SINGLE_CLIENT } from '../../utils/queries';
 import { DELETE_CLIENT } from '../../utils/mutations';
 import { useState, useEffect } from 'react';
+import EditClient from '../forms/editClient';
 
 export default function BioData({ clientId }) {
   const { loading, data } = useQuery(GET_SINGLE_CLIENT, {
@@ -49,8 +50,8 @@ export default function BioData({ clientId }) {
   return (
     <>
       {/* individual client */}
-      <div className='flex flex-col'>
-        <div className='bg-white py-6 sm:py-8 lg:py-12 rounded-lg shadow-md'>
+      <div className='flex flex-col space-y-2'>
+        <div className='bg-white border-s-4 py-6 sm:py-8 lg:py-12 rounded-lg shadow-md'>
           <div className='mx-auto max-w-screen-2xl px-4 md:px-8'>
             <div className='flex flex-row items-baseline'>
               <article className='prose lg:prose-xl'>Client Name:</article>
@@ -58,7 +59,7 @@ export default function BioData({ clientId }) {
             </div>
           </div>
         </div>
-        <div className='bg-white py-6 sm:py-8 lg:py-12 rounded-lg shadow-md'>
+        <div className='bg-white border-s-4 py-6 sm:py-8 lg:py-12 rounded-lg shadow-md'>
           <div className='mx-auto max-w-screen-2xl px-4 md:px-8'>
             <div className='flex flex-row items-baseline'>
               <article className='prose lg:prose-xl'>Client Email:</article>
@@ -66,7 +67,7 @@ export default function BioData({ clientId }) {
             </div>
           </div>
         </div>
-        <div className='bg-white py-6 sm:py-8 lg:py-12 rounded-lg shadow-md'>
+        <div className='bg-white border-s-4 py-6 sm:py-8 lg:py-12 rounded-lg shadow-md'>
           <div className='mx-auto max-w-screen-2xl px-4 md:px-8'>
             <div className='flex flex-row items-baseline'>
               <article className='prose lg:prose-xl'>Guardian Name:</article>
@@ -74,7 +75,7 @@ export default function BioData({ clientId }) {
             </div>
           </div>
         </div>
-        <div className='bg-white py-6 sm:py-8 lg:py-12 rounded-lg shadow-md'>
+        <div className='bg-white border-s-4 py-6 sm:py-8 lg:py-12 rounded-lg shadow-md'>
           <div className='mx-auto max-w-screen-2xl px-4 md:px-8'>
             <div className='flex flex-row items-baseline'>
               <article className='prose lg:prose-xl'>Guardian Contact:</article>
@@ -89,7 +90,8 @@ export default function BioData({ clientId }) {
           >
             Delete Client
           </button>
-          <button className='btn btn-wide btn-sm btn-neutral m-2'>Edit Client</button>
+          {/* <button className='btn btn-wide btn-sm btn-neutral m-2'>Edit Client</button> */}
+          <EditClient Id={clientId} />
         </div>
       </div>
     </>
