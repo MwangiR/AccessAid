@@ -27,7 +27,7 @@ const ClientDetails = ({ client }) => (
       <p className='font-mono ml-5'>{client.Events.length} Event(s)</p>
     </div>
     <div className='flex flex-row items-baseline'>
-      <article className='prose lg:prose-xl'>Total Medication:</article>
+      <article className='prose lg:prose-xl'>Total Medications:</article>
       <p className='font-mono ml-5'>{client.Medications.length} Medication(s)</p>
     </div>
   </>
